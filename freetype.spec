@@ -152,7 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 - added using %defattr in %files (requires rpm >= 2.4.99),
 - added %lang macros for files /usr/share/locale/*/LC_MESSAGES/freetype.mo
   files,
-- added striping /usr/lib/lib*so.*.*,
+- added stripping /usr/lib/lib*so.*.*,
 - programs from /usr/bin/ moved to separated progs subpackage.
 
 * Wed Feb 18 1998 Arne Coucheron <arneco@online.no>
