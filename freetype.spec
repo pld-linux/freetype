@@ -170,7 +170,8 @@ mv -f freetype-%{version}/docs/* docs
 
 %build
 CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
-%{__make} setup CFG="--prefix=%{_prefix}"
+%{__make} setup \
+	CFG="--prefix=%{_prefix}"
 
 %{__make}
 
@@ -178,12 +179,12 @@ CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install \
-	DESTDIR="$RPM_BUILD_ROOT" \
+	DESTDIR=$RPM_BUILD_ROOT \
 	datadir=%{_datadir}
 
-install -d $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/testnames $RPM_BUILD_ROOT%{_bindir}/fttestnames
