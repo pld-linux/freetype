@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	bytecode	# with TT bytecode interpreter
+%bcond_without	bytecode	# without TT bytecode interpreter
 #		 (patents pending in USA, Japan etc., but now it includes
 #		  also patent-free hinting workaround)
 %bcond_without x11
