@@ -179,13 +179,16 @@ mv -f freetype-%{version}/docs/reference/* docs/reference
 %build
 CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
 %{__make} setup unix \
-       CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
+	CC="%{__cc}" \
+	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
 %{__make} \
+	CC="%{__cc}" \
 	X11_LIB="/usr/X11R6/%{_lib}"
 
 %if %{with x11}
 %{__make} -C ft2demos-* \
+	CC="%{__cc}" \
 	TOP_DIR="`pwd`" \
 	X11_LIB="/usr/X11R6/%{_lib}"
 %endif
