@@ -166,9 +166,7 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
-(cd src/cache/
-%patch0 
-)
+patch src/cache/ftlru.c < %{PATCH0}
 
 mv -f freetype-%{version}/docs/* docs
 
