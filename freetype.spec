@@ -14,7 +14,8 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.8
-Release:	2
+Release:	3
+Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
@@ -96,7 +97,7 @@ Summary(pt_BR):	Arquivos de inclusЦo e bibliotecas estАticas para desenvolviment
 Summary(ru):	Библиотеки разработчика для freetype
 Summary(uk):	Б╕бл╕отеки програм╕ста для freetype
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
@@ -134,7 +135,7 @@ Summary(pt_BR):	Bibliotecas estАticas para desenvolvimento com freetype
 Summary(ru):	Статические библиотеки freetype
 Summary(uk):	Статичн╕ б╕бл╕отеки freetype
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	freetype2-static
 
 %description static
@@ -162,7 +163,7 @@ Summary:	FreeType demo programs
 Summary(ko):	FreeTypeю╩ ╫цгХгь╨╪ ╪Ж юж╢б га╥н╠в╥╔ ╦Пю╫
 Summary(pl):	Programy demonstracyjne FreeType
 Group:		X11/Applications
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description demos
 Demonstration programs for FreeType library.
