@@ -79,7 +79,7 @@ Przyk³adowe aplikacje wykorzystuj±ce freetype
 %build
 autoconf
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=%{_prefix} \
         --enable-static \
         --with-locale-dir=%{_datadir}/locale \
