@@ -10,13 +10,6 @@ Version:	2.0.6
 Release:	2
 License:	GPL or FTL
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
 Patch0:		%{name}2-DESTDIR.patch
@@ -47,13 +40,6 @@ FreeType jest bibliotek╠ sЁu©╠c╠ do rasteryzacji fontСw TrueType. Kody
 Summary:	Header files and development documentation
 Summary(pl):	Pliki nagЁСwkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Obsoletes:	freetype2-devel
 Obsoletes:	freetype2-static
@@ -70,13 +56,6 @@ kompilowaniu programСw wykorzystuj╠cych bibliotekЙ freetype.
 Summary:	Freetype static libraries
 Summary(pl):	Biblioteki statyczne freetype
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 Obsoletes:	freetype2-static
 
