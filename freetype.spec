@@ -117,9 +117,11 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/*
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755)
+/usr/lib/lib*.a
 
 %files progs
+%defattr(644,root,root,755)
 %attr(755,root,root) /usr/bin/*
 
 %changelog
