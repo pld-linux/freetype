@@ -10,15 +10,16 @@ Summary(pt_BR):	Biblioteca de renderizaГЦo de fontes TrueType
 Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
-Version:	2.1.2
-Release:	1
+Version:	2.1.3rc2
+Release:	2
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
-Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
+
 Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
-Patch0:		%{name}2-DESTDIR.patch
+Patch0:		%{name}2-owen.patch
 Patch1:		%{name}2-bytecode.patch
+Patch2:		%{name}2-slight.patch
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -158,9 +159,11 @@ Demonstration programs for FreeType library.
 Programy demonstracyjne do biblioteki FreeType.
 
 %prep
-%setup -q -b1 -a2
-%patch0 -p1
+%setup -q -a2
+
 %{!?_without_bytecode:%patch1 -p1}
+%patch2 -p0
+%patch0 -p1
 
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
@@ -197,7 +200,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
+#The docs have been moved to the www module, which is very big, decided not to include
+#in the package, since it also contained much unwanted and unneeded stuff
+#%doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
