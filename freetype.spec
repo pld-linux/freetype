@@ -14,9 +14,9 @@ Version:	2.1.3
 Release:	1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
-Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
-Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
+Source0:	http://telia.dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}.tar.bz2
+Source1:	http://telia.dl.sourceforge.net/sourceforge/freetype/ftdocs-%{version}.tar.bz2
+Source2:	http://telia.dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}.tar.bz2
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
