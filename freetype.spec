@@ -184,8 +184,6 @@ install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_xbindir}
 install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/testnames $RPM_BUILD_ROOT%{_bindir}/fttestnames
 
-gzip -9nf docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -194,7 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.gz
+%doc docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
