@@ -81,7 +81,7 @@ CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target} \
 	--prefix=/usr \
         --enable-static \
-        --with-locale-dir=/usr/share/locale \
+        --with-locale-dir=%{_datadir}/locale \
         --with-gnu-ld
 make
 
@@ -89,8 +89,8 @@ make
 rm -rf $RPM_BUILD_ROOT
 make install \
 	prefix=$RPM_BUILD_ROOT/usr \
-	localedir=$RPM_BUILD_ROOT/usr/share/locale \
-	gnulocaledir=$RPM_BUILD_ROOT/usr/share/locale
+	localedir=$RPM_BUILD_ROOT%{_datadir}/locale \
+	gnulocaledir=$RPM_BUILD_ROOT%{_datadir}/locale
 
 strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
@@ -104,11 +104,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%lang(cs) /usr/share/locale/cs/LC_MESSAGES/freetype.mo
-%lang(de) /usr/share/locale/de/LC_MESSAGES/freetype.mo
-%lang(es) /usr/share/locale/es/LC_MESSAGES/freetype.mo
-%lang(fr) /usr/share/locale/fr/LC_MESSAGES/freetype.mo
-%lang(nl) /usr/share/locale/nl/LC_MESSAGES/freetype.mo
+%lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/freetype.mo
+%lang(de) %{_datadir}/locale/de/LC_MESSAGES/freetype.mo
+%lang(es) %{_datadir}/locale/es/LC_MESSAGES/freetype.mo
+%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/freetype.mo
+%lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/freetype.mo
 
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
@@ -183,7 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 - replaced usind %{version} macro by predefined %%{PACKAGE_VERSION},
 - added "Requires: freetype = %{PACKAGE_VERSION}" for devel subpackage,
 - added using %defattr in %files (requires rpm >= 2.4.99),
-- added %lang macros for files /usr/share/locale/*/LC_MESSAGES/freetype.mo
+- added %lang macros for files %{_datadir}/locale/*/LC_MESSAGES/freetype.mo
   files,
 - added stripping /usr/lib/lib*so.*.*,
 - programs from /usr/bin/ moved to separated progs subpackage.
