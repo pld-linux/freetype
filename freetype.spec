@@ -1,7 +1,12 @@
+#
+# Conditional build:
+# _without_bytecode	- without TT bytecode interpreter
+#			  (patents pending in USA, Japan...)
+#
 Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontСw Truetype
 Name:		freetype
-Version:	2.0.4
+Version:	2.0.5
 Release:	1
 License:	GPL or FTL
 Group:		Libraries
@@ -9,10 +14,14 @@ Group(de):	Libraries
 Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/%{name}-%{version}.tar.bz2
-Source1:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/ftdocs-%{version}.tar.bz2
+Group(pt_BR):	Bibliotecas
+Group(ru):	Библиотеки
+Group(uk):	Б╕бл╕отеки
+Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
+Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
 Patch0:		%{name}2-DESTDIR.patch
 Patch1:		%{name}2-gsf-segv.patch
+Patch2:		%{name}2-bytecode.patch
 URL:		http://www.freetype.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
@@ -39,8 +48,12 @@ Summary:	Header files and development documentation
 Summary(pl):	Pliki nagЁСwkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Obsoletes:	freetype2-devel
 Obsoletes:	freetype2-static
@@ -58,8 +71,12 @@ Summary:	Freetype static libraries
 Summary(pl):	Biblioteki statyczne freetype
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 Obsoletes:	freetype2-static
 
@@ -73,6 +90,7 @@ Biblioteki statyczne freetype.
 %setup -q -b1
 %patch0 -p1
 %patch1 -p1
+%{!?_without_bytecode:%patch2 -p1}
 
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
@@ -85,13 +103,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
-gzip -9nf docs/{CHANGES,FTL.txt,PATENTS,license.txt,todo,cache.txt}
-
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+gzip -9nf docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,todo,cache.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
