@@ -2,7 +2,7 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	2.0.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Group(de):	Libraries
@@ -10,6 +10,7 @@ Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/%{name}-%{version}-test.tar.bz2
 Patch0:		%{name}2-DESTDIR.patch
+Patch1:		%{name}2-include-nowarn.patch
 URL:		http://www.freetype.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
@@ -69,23 +70,18 @@ Biblioteki statyczne freetype.
 %prep
 %setup -q -n freetype-%{version}-test
 %patch0 -p1
+%patch1 -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" %{__make} 
+CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
+
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR="$RPM_BUILD_ROOT" \
-	prefix"=%{_prefix}"
-
-chmod u+rw $RPM_BUILD_ROOT%{_bindir}/freetype-config
-cat $RPM_BUILD_ROOT%{_bindir}/freetype-config \
-	| sed 's/prefix=\/usr\/local/prefix=\/usr/g' \
-	> $RPM_BUILD_ROOT%{_bindir}/freetype-config.new
-mv $RPM_BUILD_ROOT%{_bindir}/freetype-config.new $RPM_BUILD_ROOT%{_bindir}/freetype-config
+	DESTDIR="$RPM_BUILD_ROOT"
 
 gzip -9nf LICENSE.TXT
 
@@ -106,6 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/freetype2
+%{_includedir}/*.h
 
 %files static
 %defattr(644,root,root,755)
