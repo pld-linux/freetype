@@ -9,6 +9,7 @@ Group(pl):	Biblioteki
 Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRoot:	/tmp/%{name}-%{version}-root
+Conflicts:	glibc <= 2.0.7
 
 %description
 The FreeType engine is a free and portable TrueType font rendering engine,
@@ -124,6 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Wed Feb 17 1999 Micha³ Kuratczyk <kura@wroclaw.art.pl>
   [1.2-3d]
+- added "Conflicts: glibc <= 2.0.7" for installing in proper enviroment,
 - gzipping instead bzipping
 - removed *.lsm and license.txt from %doc
 - added docs/credits to %doc
