@@ -2,7 +2,7 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.2
-Release:	5
+Release:	6
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -77,9 +77,10 @@ Przyk³adowe aplikacje wykorzystuj±ce freetype
 %setup -q
 
 %build
+autoconf
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target} \
-	--prefix=/usr \
+	--prefix=%{_prefix} \
         --enable-static \
         --with-locale-dir=%{_datadir}/locale \
         --with-gnu-ld
@@ -96,20 +97,15 @@ strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf howto/unix.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
 
+%find_lang freetype
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
-%defattr(644,root,root,755)
-%lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/freetype.mo
-%lang(de) %{_datadir}/locale/de/LC_MESSAGES/freetype.mo
-%lang(es) %{_datadir}/locale/es/LC_MESSAGES/freetype.mo
-%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/freetype.mo
-%lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/freetype.mo
-
+%files -f freetype.lang
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
@@ -123,70 +119,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 
 %files progs
-%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 
 %changelog
-* Sat Apr 23 1999 Artur Frysiak <wiget@pld.org.pl>
-  [1.2-5]
-- recompiled on new rpm.
-
-* Wed Feb 17 1999 Micha³ Kuratczyk <kura@wroclaw.art.pl>
-  [1.2-3d]
-- added "Conflicts: glibc <= 2.0.7" for installing in proper enviroment,
-- gzipping instead bzipping
-- removed *.lsm and license.txt from %doc
-- added docs/credits to %doc
-- cosmetic changes
-
-* Sun Jan 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2-2d]
-- fixed pl transtion,
-- added Group(pl),
-- all %doc moved to devel,
-- added bzipping2 %doc,
-- fixed permission on /usr/lib/lib*.so in devel (must be 755).
-
-* Mon Jul 20 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [1.1-2]
-- added static subapackage
-- added pl translation.
-
-* Fri Jun 05 1998 Arne Coucheron <arneco@online.no>
-- updated to 1.1pre1-2
-- rpm 2.5 is doing weird things with the %doc, moved it last in filelist
-  to make it behave better
-
-* Mon May 25 1998 Arne Coucheron <arneco@online.no>
-- updated to 1.1pre1-1
-- removed libttf.so.1 symlink
-- added --with-locale-dir and --with-gnu-ld to configure
-- changed HOWTO in %doc to HOWTO.txt
-- lib*.so* files wasn't chmod 755, fixed
-- removed initial making of the $RPM_BUILD_ROOT/usr directory
-  layout in %install, it isn't needed
-
-* Thu May 14 1998 Arne Coucheron <arneco@online.no>
-- updated to current devel release so that ImageMagick 4.0.6 can be compiled
-- removed installing of tterror.h/ttcommon.h, don't exist in devel source
-- added --enable-static to configure, required now to build static libs
-- added additional NLS languages
-- made symlink from libttf.so.1 to libttf.so.2.0.0 for apps needing it
-
-* Wed May  6 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-- added instaling tterror.h header file,
-- %%{version} macro instead %%{PACKAGE_VERSION},
-- added using %%{name} macro in Buildroot and in Requires in devel,
-- added -q %setup parameter.
-
-* Mon Apr 27 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-- replaced usind %{version} macro by predefined %%{PACKAGE_VERSION},
-- added "Requires: freetype = %{PACKAGE_VERSION}" for devel subpackage,
-- added using %defattr in %files (requires rpm >= 2.4.99),
-- added %lang macros for files %{_datadir}/locale/*/LC_MESSAGES/freetype.mo
-  files,
-- added stripping /usr/lib/lib*so.*.*,
-- programs from %{_bindir}/ moved to separated progs subpackage.
-
-* Wed Feb 18 1998 Arne Coucheron <arneco@online.no>
-- First release, 1.0-1
+* Sat May 29 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.-6]
+- based on cpec from RH contrib (Arne Coucheron <arneco@online.no>),
+- spec rewrited by PLD team,
+- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
