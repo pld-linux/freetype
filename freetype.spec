@@ -13,16 +13,18 @@ Summary(pt_BR):	Biblioteca de renderizaГЦo de fontes TrueType
 Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
-Version:	2.1.7
-Release:	5
+Version:	2.1.8
+Release:	1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
-# Source0-md5:	d5c39853f6741c8401bfe272478958a8
-Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
+# Source0-md5:	f717615787a1aadbdb164d1bc23c2308
+# ftdocs-2.1.8 are empty???
+#Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
+Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-2.1.7.tar.bz2
 # Source1-md5:	56579e3610482522061cfafbb788a81b
 Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
-# Source2-md5:	89a5b3fd3177fbc71f9ba7cbc64edfa2
+# Source2-md5:	8f74f908637420d54d7cc87168c0a92e
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 %{?with_x11:BuildRequires:	XFree86-devel}
@@ -169,7 +171,7 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 
-mv -f freetype-%{version}/docs/reference/* docs/reference
+mv -f freetype-2.1.7/docs/reference/* docs/reference
 
 %build
 CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
