@@ -8,7 +8,7 @@ Group:		Libraries
 Group(pl):	Biblioteki
 Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
-BuildRequires:	gettext
+BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
