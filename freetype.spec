@@ -3,6 +3,7 @@
 # _with_bytecode	- with TT bytecode interpreter
 #			(patents pending in USA, Japan...)
 #
+%define		_status	rc1
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
 Summary(pl):	Rasteryzer fontÛw TrueType
@@ -10,13 +11,14 @@ Summary(pt_BR):	Biblioteca de renderizaÁ„o de fontes TrueType
 Summary(ru):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘œ◊ TrueType
 Summary(uk):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘¶◊ TrueType
 Name:		freetype
-Version:	2.1.3
-Release:	1
+Version:	2.1.4
+Release:	%{_status}_1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	http://telia.dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}.tar.bz2
-Source1:	http://telia.dl.sourceforge.net/sourceforge/freetype/ftdocs-%{version}.tar.bz2
-Source2:	http://telia.dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}.tar.bz2
+Source0:	http://telia.dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}%{_status}.tar.bz2
+# no doc and demos in rc.
+#Source1:	http://telia.dl.sourceforge.net/sourceforge/freetype/ftdocs-%{version}%{_status}.tar.bz2
+#Source2:	http://telia.dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}%{_status}.tar.bz2
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -156,7 +158,8 @@ Demonstration programs for FreeType library.
 Programy demonstracyjne do biblioteki FreeType.
 
 %prep
-%setup -q -b1 -a2
+%setup -q -n %{name}-%{version}%{_status} 
+#no doc/demos -b1 -a2
 
 %build
 CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
@@ -164,7 +167,7 @@ CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}"
 
 %{__make}
 
-%{__make} TOP_DIR="`pwd`" -C ft2demos-*
+##%{__make} TOP_DIR="`pwd`" -C ft2demos-*
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -173,11 +176,11 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR="$RPM_BUILD_ROOT" \
 	datadir=%{_datadir}
 
-# demos
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_xbindir}}
-install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_xbindir}
-install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
-install ft2demos-*/bin/.libs/testnames $RPM_BUILD_ROOT%{_bindir}/fttestnames
+# no demos
+##install -d $RPM_BUILD_ROOT{%{_bindir},%{_xbindir}}
+##install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_xbindir}
+##install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
+##install ft2demos-*/bin/.libs/testnames $RPM_BUILD_ROOT%{_bindir}/fttestnames
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -192,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
+##%doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
@@ -204,7 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
-%files demos
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ft*
-%attr(755,root,root) %{_xbindir}/ft*
+##%files demos
+##%defattr(644,root,root,755)
+##%attr(755,root,root) %{_bindir}/ft*
+##%attr(755,root,root) %{_xbindir}/ft*
