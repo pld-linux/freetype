@@ -109,7 +109,7 @@ autoconf
         --enable-static \
         --with-gnu-ld
 %{__make}
-%{__make} -C ttmkfdir CC="gcc $RPM_OPT_FLAGS -I../lib"
+%{__make} -C ttmkfdir CC="gcc $RPM_OPT_FLAGS -I../lib" FREETYPE_LIB='-L../lib/.libs -lttf'
 
 %install
 rm -rf $RPM_BUILD_ROOT
