@@ -2,7 +2,7 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.2
-Release:	2d
+Release:	2
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	LGPL
@@ -123,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Sun Jan 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2-2d]
+  [1.2-2]
 - fixed pl transtion,
 - added Group(pl),
 - all %doc moved to devel,
