@@ -12,6 +12,7 @@ Source1:	ttmkfdir.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-autoconf.patch
 Patch2:		%{name}-foundrynames.patch
+Patch3:		%{name}-nospaces.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
@@ -126,6 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/ttmkfdir
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
@@ -141,4 +143,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files progs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/f*
