@@ -170,7 +170,7 @@ mv -f freetype-%{version}/docs/* docs
 
 %build
 CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
-%{__make} setup \
+%{__make} setup unix \
 	CFG="--prefix=%{_prefix}"
 
 %{__make}
