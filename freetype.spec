@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _with_bytecode	- without TT bytecode interpreter
+# _without_bytecode	- without TT bytecode interpreter
 #			(patents pending in USA, Japan...)
 #
 Summary:	Truetype font rasterizer
@@ -62,7 +62,7 @@ Obsoletes:	freetype2-static
 This package includes the header files documentations and libraries
 necessary to develop applications that use freetype.
 
-%description -l pl devel 
+%description devel -l pl
 Pakiet ten zawiera pliki nag³ówkowe oraz biblioteki niezbêdne przy
 kompilowaniu programów wykorzystuj±cych bibliotekê freetype.
 
@@ -83,14 +83,14 @@ Obsoletes:	freetype2-static
 %description static
 Static freetype libraries.
 
-%description -l pl static 
+%description static -l pl
 Biblioteki statyczne freetype.
 
 %prep
 %setup -q -b1
 %patch0 -p1
 %patch1 -p1
-%{!?_with_bytecode:%patch2 -p1}
+%{!?_without_bytecode:%patch2 -p1}
 
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
