@@ -120,10 +120,3 @@ rm -rf $RPM_BUILD_ROOT
 
 %files progs
 %attr(755,root,root) %{_bindir}/*
-
-%changelog
-* Sat May 29 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2.-6]
-- based on cpec from RH contrib (Arne Coucheron <arneco@online.no>),
-- spec rewrited by PLD team,
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
