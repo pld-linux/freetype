@@ -92,7 +92,7 @@ make install \
 	localedir=$RPM_BUILD_ROOT/usr/share/locale \
 	gnulocaledir=$RPM_BUILD_ROOT/usr/share/locale
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf howto/unix.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
 
@@ -110,17 +110,17 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) /usr/share/locale/fr/LC_MESSAGES/freetype.mo
 %lang(nl) /usr/share/locale/nl/LC_MESSAGES/freetype.mo
 
-%attr(755,root,root) /usr/lib/lib*so.*.*
+%attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc howto/unix* docs/*txt* *.gz
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 /usr/include/*
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %files progs
 %defattr(644,root,root,755)
