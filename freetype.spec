@@ -97,7 +97,7 @@ strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf howto/unix.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
 
-%find_lang freetype
+%find_lang %{name}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -105,7 +105,7 @@ gzip -9nf howto/unix.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f freetype.lang
+%files -f %{name}.lang
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
