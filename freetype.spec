@@ -2,12 +2,12 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.2
-Release:	2d
+Release:	3d
+Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Copyright:	LGPL
 ##########	ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype
-Source:		freetype-%{version}.tar.gz
+Source:		%{name}-%{version}.tar.gz
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -26,7 +26,7 @@ Summary:	Header files and development documentation
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
-Requires:	freetype = %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 This package includes the header files documentations and libraries
@@ -94,7 +94,7 @@ chmod 755 $RPM_BUILD_ROOT/usr/lib/lib*so.*
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-bzip2 -9 HOWTO.txt README announce license.txt docs/{*.txt,*lsm,*doc,FAQ,TODO}
+gzip -9nf HOWTO.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/* *.bz2
+%doc docs/* *.gz
 %attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
 
@@ -127,6 +127,13 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/*
 
 %changelog
+* Wed Feb 17 1999 Micha³ Kuratczyk <kura@wroclaw.art.pl>
+  [1.2-3d]
+- gzipping instead bzipping
+- removed *.lsm and license.txt from %doc
+- added docs/credits to %doc
+- cosmetic changes
+
 * Sun Jan 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2-2d]
 - fixed pl transtion,
