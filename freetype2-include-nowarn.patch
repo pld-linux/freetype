@@ -1,0 +1,19 @@
+diff -Nur freetype-2.0.2-test.orig/builds/unix/ft2unix.h freetype-2.0.2-test/builds/unix/ft2unix.h
+--- freetype-2.0.2-test.orig/builds/unix/ft2unix.h	Tue Dec 12 23:27:54 2000
++++ freetype-2.0.2-test/builds/unix/ft2unix.h	Tue Mar 27 15:54:43 2001
+@@ -30,11 +30,11 @@
+ #ifndef __FT2_BUILD_UNIX_H__
+ #define __FT2_BUILD_UNIX_H__
+ 
+-#define FT2_PUBLIC_FILE( x )    <freetype2/freetype/ ## x ## >
+-#define FT2_CONFIG_FILE( x )    <freetype2/freetype/config/ ## x ## >
+-#define FT2_INTERNAL_FILE( x )  <freetype2/freetype/internal/ ## x ## >
++#define FT2_H_PUBLIC_FILE( x )    <freetype2/freetype/ ## x ## >
++#define FT2_H_CONFIG_FILE( x )    <freetype2/freetype/config/ ## x ## >
++#define FT2_H_INTERNAL_FILE( x )  <freetype2/freetype/internal/ ## x ## >
+ 
+-#include FT2_CONFIG_FILE( ft2build.h )
++#include FT2_H_CONFIG_FILE( ft2build.h )
+ 
+ #endif /* __FT2_BUILD_UNIX_H__ */
+ 

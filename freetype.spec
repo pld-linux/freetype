@@ -1,31 +1,29 @@
 #
 # Conditional build:
-# _without_bytecode	- without TT bytecode interpreter
+# _with_bytecode	- with TT bytecode interpreter
 #			(patents pending in USA, Japan...)
 #
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
+Summary(ko):	¿⁄¿Ø∑”∞‘ æÓµµÁ æµ ºˆ ¿÷¥¬ ∆Æ∑Á≈∏¿‘ ±€≤√¿ª ¥Ÿ∑Á¥¬ ø£¡¯
 Summary(pl):	Rasteryzer fontÛw TrueType
 Summary(pt_BR):	Biblioteca de renderizaÁ„o de fontes TrueType
 Summary(ru):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘œ◊ TrueType
 Summary(uk):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘¶◊ TrueType
 Name:		freetype
-Version:	2.1.2
+Version:	2.1.4
 Release:	1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
-Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
-Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
-Patch0:		%{name}2-DESTDIR.patch
-Patch1:		%{name}2-bytecode.patch
+Source0:	http://dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}.tar.bz2
+Source1:	http://dl.sourceforge.net/sourceforge/freetype/ftdocs-%{version}.tar.bz2
+Source2:	http://dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}.tar.bz2
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
-
-%define		_xbindir	/usr/X11R6/bin
 
 %description
 The FreeType engine is a free and portable TrueType font rendering
@@ -79,13 +77,15 @@ incluÌdos neste pacote.
 
 %package devel
 Summary:	Header files and development documentation
-Summary(es):	Archivos de inclusiÛn e bibliotecas est·ticas para desarrollo con FreeType.
+Summary(es):	Archivos de inclusiÛn e bibliotecas est·ticas para desarrollo con FreeType
+Summary(ko):	FreeType¿ª æµ ∂ß « ø‰«— ¡§¿˚ ∂Û¿Ã∫Í∑Ø∏ÆøÕ ∏”∏Æ∏ª ∆ƒ¿œ
 Summary(pl):	Pliki nag≥Ûwkowe biblioteki freetype i dokumentacja
-Summary(pt_BR):	Arquivos de inclus„o e bibliotecas est·ticas para desenvolvimento com FreeType.
+Summary(pt_BR):	Arquivos de inclus„o e bibliotecas est·ticas para desenvolvimento com FreeType
 Summary(ru):	‚…¬Ã…œ‘≈À… “¡⁄“¡¬œ‘ﬁ…À¡ ƒÃ— freetype
 Summary(uk):	‚¶¬Ã¶œ‘≈À… –“œ«“¡Õ¶”‘¡ ƒÃ— freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
 %description devel
@@ -147,6 +147,7 @@ Bibliotecas est·ticas para desenvolvimento com freetype.
 
 %package demos
 Summary:	FreeType demo programs
+Summary(ko):	FreeType¿ª Ω√«Ë«ÿ∫º ºˆ ¿÷¥¬ «¡∑Œ±◊∑• ∏¿Ω
 Summary(pl):	Programy demonstracyjne FreeType
 Group:		X11/Applications
 Requires:	%{name} = %{version}
@@ -158,12 +159,13 @@ Demonstration programs for FreeType library.
 Programy demonstracyjne do biblioteki FreeType.
 
 %prep
-%setup -q -b1 -a2
-%patch0 -p1
-%{!?_without_bytecode:%patch1 -p1}
+%setup -q -a1 -a2
+
+mv -f freetype-%{version}/docs/* docs
 
 %build
-CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
+CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
+%{__make} setup CFG="--prefix=%{_prefix}"
 
 %{__make}
 
@@ -176,13 +178,10 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR="$RPM_BUILD_ROOT" \
 	datadir=%{_datadir}
 
-# demos
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_xbindir}}
-install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_xbindir}
+install -d $RPM_BUILD_ROOT%{_bindir}
+install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/testnames $RPM_BUILD_ROOT%{_bindir}/fttestnames
-
-gzip -9nf docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -192,7 +191,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.gz
+%doc docs/{CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
@@ -200,7 +199,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_includedir}/freetype2
 %{_includedir}/*.h
 %{_aclocaldir}/*.m4
@@ -212,4 +211,3 @@ rm -rf $RPM_BUILD_ROOT
 %files demos
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ft*
-%attr(755,root,root) %{_xbindir}/ft*
