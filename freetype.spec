@@ -7,7 +7,7 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	2.0.6
-Release:	1
+Release:	2
 License:	GPL or FTL
 Group:		Libraries
 Group(de):	Libraries
