@@ -1,7 +1,7 @@
 Summary:     Truetype font rasterizer
 Summary(pl): Fonty Truetype 
 Name:        freetype
-Version:     1.1
+Version:     1.2
 Release:     1
 Source:      ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/freetype-%{version}.tar.gz
 URL:         http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
@@ -98,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755, root, root) /usr/lib/lib*so.*.*
 %lang(cs) /usr/share/locale/cs/LC_MESSAGES/freetype.mo
 %lang(de) /usr/share/locale/de/LC_MESSAGES/freetype.mo
+%lang(es) /usr/share/locale/es/LC_MESSAGES/freetype.mo
 %lang(fr) /usr/share/locale/fr/LC_MESSAGES/freetype.mo
 %lang(nl) /usr/share/locale/nl/LC_MESSAGES/freetype.mo
 
