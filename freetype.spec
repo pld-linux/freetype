@@ -6,7 +6,8 @@ Release:	2d
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	LGPL
-Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/freetype-%{version}.tar.gz
+##########	ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype
+Source:		freetype-%{version}.tar.gz
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -20,7 +21,7 @@ FreeType jest bibliotek± s³u¿±c± do rasteryzacji fontów TrueType.
 Kody ¼ród³owe napisane
 s± w ANSI C orza PASCAL'u. 
 
-%package devel
+%package	devel
 Summary:	Header files and development documentation
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
@@ -35,7 +36,7 @@ necessary to develop applications that use freetype.
 Pakiet ten zawiera pliki nag³ówkowe oraz biblioteki niezbêdne przy
 kompilowaniu program wykorzystuj±cych bibliotekê freetype.
 
-%package static
+%package	static
 Summary:	Freetype static libraries
 Summary(pl):	Biblioteki statyczne freetype
 Group:		Development/Libraries
@@ -48,7 +49,7 @@ Static freetype libraries.
 %description -l pl static 
 Biblioteki statyczne freetype.
 
-%package progs
+%package	progs
 Summary:	Freetype library utilities
 Summary(pl):	Programy u¿ytkowe freetype
 Group:		Utilities
@@ -89,6 +90,8 @@ make install \
 	localedir=$RPM_BUILD_ROOT/usr/share/locale \
 	gnulocaledir=$RPM_BUILD_ROOT/usr/share/locale
 
+chmod 755 $RPM_BUILD_ROOT/usr/lib/lib*so.*
+
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
 bzip2 -9 HOWTO.txt README announce license.txt docs/{*.txt,*lsm,*doc,FAQ,TODO}
@@ -110,16 +113,18 @@ rm -rf $RPM_BUILD_ROOT
 %lang(nl) /usr/share/locale/nl/LC_MESSAGES/freetype.mo
 
 %files devel
-%defattr(644,root,root)
+%defattr(644,root,root,755)
 %doc docs/* *.bz2
 %attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755) 
+/usr/lib/lib*.a
 
 %files progs
-%attr(755,root,root) /usr/bin/*
+%defattr(755,root,root,755)
+/usr/bin/*
 
 %changelog
 * Sun Jan 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
