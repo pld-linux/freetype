@@ -12,7 +12,7 @@ Patch1:		freetype-autoconf.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The FreeType engine is a free and portable TrueType font rendering engine.
