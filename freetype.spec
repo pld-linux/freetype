@@ -5,6 +5,7 @@
 #
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
+Summary(ko):	ÀÚÀ¯·Ó°Ô ¾îµğµç ¾µ ¼ö ÀÖ´Â Æ®·çÅ¸ÀÔ ±Û²ÃÀ» ´Ù·ç´Â ¿£Áø
 Summary(pl):	Rasteryzer fontów TrueType
 Summary(pt_BR):	Biblioteca de renderização de fontes TrueType
 Summary(ru):	òÁÓÔÅÒÉÚÁÔÏÒ ÛÒÉÆÔÏ× TrueType
@@ -77,6 +78,7 @@ incluídos neste pacote.
 %package devel
 Summary:	Header files and development documentation
 Summary(es):	Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType
+Summary(ko):	FreeTypeÀ» ¾µ ¶§ ÇÊ¿äÇÑ Á¤Àû ¶óÀÌºê·¯¸®¿Í ¸Ó¸®¸» ÆÄÀÏ
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
 Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas para desenvolvimento com FreeType
 Summary(ru):	âÉÂÌÉÏÔÅËÉ ÒÁÚÒÁÂÏÔŞÉËÁ ÄÌÑ freetype
@@ -145,6 +147,7 @@ Bibliotecas estáticas para desenvolvimento com freetype.
 
 %package demos
 Summary:	FreeType demo programs
+Summary(ko):	FreeTypeÀ» ½ÃÇèÇØº¼ ¼ö ÀÖ´Â ÇÁ·Î±×·¥ ¸ğÀ½
 Summary(pl):	Programy demonstracyjne FreeType
 Group:		X11/Applications
 Requires:	%{name} = %{version}
