@@ -1,22 +1,16 @@
 Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
-Name:		freetype
-Version:	1.3.1
-Release:	10
-License:	BSD like
+Name:		freetype2
+Version:	2.0.2
+Release:	1
+License:	GPL
 Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
-Source1:	ttmkfdir.tar.gz
+Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}/freetype-%{version}-test.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-autoconf.patch
-Patch2:		%{name}-foundrynames.patch
-Patch3:		%{name}-nospaces.patch
-URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
-BuildRequires:	gettext-devel
-BuildRequires:	XFree86-devel
+URL:		http://www.freetype.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -68,60 +62,28 @@ Static freetype libraries.
 %description -l pl static 
 Biblioteki statyczne freetype.
 
-%package progs
-Summary:	Freetype library utilities
-Summary(pl):	Programy u¿ytkowe freetype
-Group:		Applications
-Group(de):	Applikationen
-Group(pl):	Aplikacje
-Requires:	%{name} = %{version}
-Obsoletes:	freetype-utils
-
-%description progs
-Freetype library utilites:
-- ftimer - a simple performance timer for the engine,
-- fzoom - very simple glyph viewer,
-- ftlint - program will hint each glyph of a font file, at a given
-  point size,
-- ftwiew - display all glyphs in a given font, applying hinting to
-  each one,
-- fdump - a simple TrueType font or collection dumper,
-- ftstring - a simple program to show off string text generation.
-- ftstrpn - convert a rendered text string into the PGM or PBM format,
-- fterror - small test program. Tests the gettext() functionality for
-  internationalized messages.
-
-%description -l pl progs
-Przyk³adowe aplikacje wykorzystuj±ce freetype.
-
 %prep
-%setup -q
-mkdir ttmkfdir
-tar xz -C ttmkfdir -f %{SOURCE1}
+%setup -q -n freetype-%{version}-test
 %patch0 -p1
-%patch1 -p1
 
 %build
-gettextize --copy --force
-aclocal
-autoconf
-%configure \
-        --enable-static \
-        --with-gnu-ld
-%{__make}
-%{__make} -C ttmkfdir CC="gcc $RPM_OPT_FLAGS -I../lib" FREETYPE_LIB='-L../lib/.libs -lttf'
+CFLAGS="$RPM_OPT_FLAGS" %{__make} 
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-install ttmkfdir/ttmkfdir $RPM_BUILD_ROOT%{_bindir}
+%{__make} install \
+	DESTDIR="$RPM_BUILD_ROOT" \
+	prefix"=%{_prefix}"
 
-strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
+chmod u+rw $RPM_BUILD_ROOT%{_bindir}/freetype-config
+cat $RPM_BUILD_ROOT%{_bindir}/freetype-config \
+	| sed 's/prefix=\/usr\/local/prefix=\/usr/g' \
+	> $RPM_BUILD_ROOT%{_bindir}/freetype-config.new
+mv $RPM_BUILD_ROOT%{_bindir}/freetype-config.new $RPM_BUILD_ROOT%{_bindir}/freetype-config
 
-gzip -9nf howto/unix.txt README announce docs/{*.txt,FAQ,TODO,credits}
-
-%find_lang %{name}
+gzip -9nf LICENSE.TXT
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -129,22 +91,18 @@ gzip -9nf howto/unix.txt README announce docs/{*.txt,FAQ,TODO,credits}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ttmkfdir
+%doc *.gz docs/*.html
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc howto/unix* docs/*txt* *.gz
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%{_includedir}/*
+%{_includedir}/freetype2
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%files progs
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/f*
