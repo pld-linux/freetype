@@ -200,7 +200,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_includedir}/freetype2
 %{_includedir}/*.h
 %{_aclocaldir}/*.m4
