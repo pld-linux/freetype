@@ -2,14 +2,15 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.3.1
-Release:	1
+Release:	8
 License:	BSD like
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
-Patch0:		freetype-DESTDIR.patch
-Patch1:		freetype-autoconf.patch
+Source1:	ttmkfdir.tar.gz
+Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-autoconf.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
@@ -36,8 +37,8 @@ FreeType jest bibliotek± s³u¿±c± do rasteryzacji fontów TrueType. Kody
 Summary:	Header files and development documentation
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
-Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(fr):	Development/Librairies
 Requires:	%{name} = %{version}
 
 %description devel
@@ -52,8 +53,8 @@ kompilowaniu programów wykorzystuj±cych bibliotekê freetype.
 Summary:	Freetype static libraries
 Summary(pl):	Biblioteki statyczne freetype
 Group:		Development/Libraries
-Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(fr):	Development/Librairies
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -66,7 +67,7 @@ Biblioteki statyczne freetype.
 Summary:	Freetype library utilities
 Summary(pl):	Programy u¿ytkowe freetype
 Group:		Utilities
-Group(pl):	Programowanie/Biblioteki
+Group(pl):	Narzêdzia
 Requires:	%{name} = %{version}
 Obsoletes:	freetype-utils
 
@@ -88,7 +89,9 @@ Freetype library utilites:
 Przyk³adowe aplikacje wykorzystuj±ce freetype.
 
 %prep
-%setup  -q
+%setup -q
+mkdir ttmkfdir
+tar xz -C ttmkfdir -f %{SOURCE1}
 %patch0 -p1
 %patch1 -p1
 
@@ -96,15 +99,17 @@ Przyk³adowe aplikacje wykorzystuj±ce freetype.
 gettextize --copy --force
 aclocal
 autoconf
-LDFLAGS="-s"; export LDFLAGS
 %configure \
         --enable-static \
         --with-gnu-ld
 %{__make}
+%{__make} -C ttmkfdir CC="gcc $RPM_OPT_FLAGS -I../lib"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+install -s ttmkfdir/ttmkfdir $RPM_BUILD_ROOT%{_bindir}
 
 strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
