@@ -2,14 +2,15 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.2
-Release:	4
+Release:	5
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
+BuildPrereq:	gettext
+BuildPrereq:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
-Conflicts:	glibc <= 2.0.7
 
 %description
 The FreeType engine is a free and portable TrueType font rendering engine,
@@ -102,13 +103,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/lib/lib*so.*.*
-
 %lang(cs) /usr/share/locale/cs/LC_MESSAGES/freetype.mo
 %lang(de) /usr/share/locale/de/LC_MESSAGES/freetype.mo
 %lang(es) /usr/share/locale/es/LC_MESSAGES/freetype.mo
 %lang(fr) /usr/share/locale/fr/LC_MESSAGES/freetype.mo
 %lang(nl) /usr/share/locale/nl/LC_MESSAGES/freetype.mo
+
+%attr(755,root,root) /usr/lib/lib*so.*.*
 
 %files devel
 %defattr(644,root,root,755)
