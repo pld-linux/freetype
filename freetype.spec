@@ -2,9 +2,10 @@
 # todo: update patches
 #
 # Conditional build:
-# _without_bytecode	- without TT bytecode interpreter
+# _with_bytecode	- without TT bytecode interpreter
 #			(patents pending in USA, Japan...)
 #
+
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
 Summary(pl):	Rasteryzer fontСw TrueType
@@ -13,14 +14,15 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.3
-Release:	0.1
+Release:	1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
 Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
 Patch0:		%{name}2-bytecode.patch
-Patch1:		%{name}2-slighthint.patch
+#Patch1:		%{name}2-slight.patch
+#Patch2:		%{name}2-owen.patch
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -161,8 +163,9 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -b1 -a2
-%{!?_without_bytecode:%patch0 -p1}
+%{?_with_bytecode:%patch0 -p1}
 #%patch1 -p1
+#%patch2 -p1
 
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
