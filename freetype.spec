@@ -11,6 +11,7 @@ Source0:	ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.ta
 Source1:	ttmkfdir.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-autoconf.patch
+Patch2:		%{name}-foundrynames.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
@@ -37,8 +38,8 @@ FreeType jest bibliotek± s³u¿±c± do rasteryzacji fontów TrueType. Kody
 Summary:	Header files and development documentation
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
-Group(pl):	Programowanie/Biblioteki
 Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -53,8 +54,8 @@ kompilowaniu programów wykorzystuj±cych bibliotekê freetype.
 Summary:	Freetype static libraries
 Summary(pl):	Biblioteki statyczne freetype
 Group:		Development/Libraries
-Group(pl):	Programowanie/Biblioteki
 Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
