@@ -2,7 +2,7 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.3
-Release:	1
+Release:	2
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -57,6 +57,7 @@ Summary(pl):	Programy u¿ytkowe freetype
 Group:		Utilities
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Obsoletes:	freetype-utils
 
 %description progs
 Freetype library utilites:
@@ -72,7 +73,7 @@ Freetype library utilites:
              functionality for internationalized messages.
 
 %description -l pl progs
-Przyk³adowe aplikacje wykorzystuj±ce freetype
+Przyk³adowe aplikacje wykorzystuj±ce freetype.
 
 %prep
 %setup -q
