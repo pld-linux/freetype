@@ -8,8 +8,8 @@ Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}/%{name}2-%{version}-test.tar.bz2
-Patch0:		%{name}-DESTDIR.patch
+Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/%{name}-%{version}-test.tar.bz2
+Patch0:		%{name}2-DESTDIR.patch
 URL:		http://www.freetype.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
