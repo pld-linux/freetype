@@ -22,7 +22,7 @@ FreeType jest bibliotek± s³u¿±c± do rasteryzacji fontów TrueType.
 Kody ¼ród³owe napisane
 s± w ANSI C orza PASCAL'u. 
 
-%package	devel
+%package devel
 Summary:	Header files and development documentation
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
 Group:		Development/Libraries
@@ -37,7 +37,7 @@ necessary to develop applications that use freetype.
 Pakiet ten zawiera pliki nag³ówkowe oraz biblioteki niezbêdne przy
 kompilowaniu program wykorzystuj±cych bibliotekê freetype.
 
-%package	static
+%package static
 Summary:	Freetype static libraries
 Summary(pl):	Biblioteki statyczne freetype
 Group:		Development/Libraries
@@ -50,7 +50,7 @@ Static freetype libraries.
 %description -l pl static 
 Biblioteki statyczne freetype.
 
-%package	progs
+%package progs
 Summary:	Freetype library utilities
 Summary(pl):	Programy u¿ytkowe freetype
 Group:		Utilities
