@@ -1,10 +1,10 @@
---- freetype-2.0.5/include/freetype/config/ftoption.h.orig	Tue Aug 21 10:50:45 2001
-+++ freetype-2.0.5/include/freetype/config/ftoption.h	Tue Oct 23 23:51:12 2001
-@@ -338,7 +338,7 @@
+--- freetype-2.0.6/include/freetype/config/ftoption.h.orig	Mon Jan  7 11:05:34 2002
++++ freetype-2.0.6/include/freetype/config/ftoption.h	Mon Jan 14 00:34:47 2002
+@@ -375,7 +375,7 @@
    /* By undefining this, you will only compile the code necessary to load  */
    /* TrueType glyphs without hinting.                                      */
    /*                                                                       */
--#undef  TT_CONFIG_OPTION_BYTECODE_INTERPRETER
+-#undef TT_CONFIG_OPTION_BYTECODE_INTERPRETER
 +#define TT_CONFIG_OPTION_BYTECODE_INTERPRETER
  
  
