@@ -20,6 +20,7 @@ Source2:	http://dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}.tar.
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
 
@@ -82,6 +83,7 @@ Summary(ru):	Библиотеки разработчика для freetype
 Summary(uk):	Б╕бл╕отеки програм╕ста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
 %description devel
