@@ -173,7 +173,8 @@ CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR="$RPM_BUILD_ROOT"
+	DESTDIR="$RPM_BUILD_ROOT" \
+	datadir=%{_datadir}
 
 # demos
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_xbindir}}
@@ -202,6 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/freetype2
 %{_includedir}/*.h
+%{_aclocaldir}/*.m4
 
 %files static
 %defattr(644,root,root,755)
