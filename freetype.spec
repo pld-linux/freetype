@@ -171,7 +171,7 @@ Programy demonstracyjne do biblioteki FreeType.
 mv -f freetype-%{version}/docs/reference/* docs/reference
 
 %build
-CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
+CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix}"
 
