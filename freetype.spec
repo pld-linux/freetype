@@ -91,7 +91,7 @@ make install \
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-gzip -9nf HOWTO.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
+gzip -9nf howto/unix.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/* *.gz
+%doc howto/unix* docs/*txt* *.gz
 %attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
 
