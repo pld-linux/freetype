@@ -14,7 +14,7 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.8
-Release:	1
+Release:	2
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
@@ -34,6 +34,8 @@ Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ia32	"-fomit-frame-pointer"
+# see <freetype/internal/ftserv.h>, the real horror
+%define		specflags	-fno-strict-aliasing
 
 %description
 The FreeType engine is a free and portable TrueType font rendering
