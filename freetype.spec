@@ -28,6 +28,8 @@ BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
 
+%define		specflags_ia32	"-fomit-frame-pointer"
+
 %description
 The FreeType engine is a free and portable TrueType font rendering
 engine. It has been developed to provide TrueType support to a great
