@@ -16,6 +16,7 @@ Patch0:		%{name}2-DESTDIR.patch
 Patch1:		%{name}2-gsf-segv.patch
 Patch2:		%{name}2-bytecode.patch
 URL:		http://www.freetype.org/
+BuildRequires:	SysVinit
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
 
