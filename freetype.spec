@@ -1,12 +1,12 @@
 #
 # Conditional build:
-# _without_bytecode	- without TT bytecode interpreter
-#			  (patents pending in USA, Japan...)
+# _with_bytecode	- without TT bytecode interpreter
+#			(patents pending in USA, Japan...)
 #
 Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
-Version:	2.0.5
+Version:	2.0.6
 Release:	1
 License:	GPL or FTL
 Group:		Libraries
@@ -90,7 +90,7 @@ Biblioteki statyczne freetype.
 %setup -q -b1
 %patch0 -p1
 %patch1 -p1
-%{!?_without_bytecode:%patch2 -p1}
+%{!?_with_bytecode:%patch2 -p1}
 
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
-gzip -9nf docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,todo,cache.txt}
+gzip -9nf docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
