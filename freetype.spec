@@ -3,6 +3,7 @@
 %bcond_without	bytecode	# without TT bytecode interpreter
 #		 (patents pending in USA, Japan etc., but now it includes
 #		  also patent-free hinting workaround)
+%bcond_without x11
 #
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
@@ -13,7 +14,7 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.7
-Release:	1
+Release:	2
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
@@ -24,7 +25,7 @@ Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
 # Source2-md5:	89a5b3fd3177fbc71f9ba7cbc64edfa2
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
-BuildRequires:	XFree86-devel
+%{?with_x11:BuildRequires:	XFree86-devel}
 BuildRequires:	automake
 BuildRequires:	zlib-devel
 Obsoletes:	freetype2
@@ -171,25 +172,29 @@ Programy demonstracyjne do biblioteki FreeType.
 mv -f freetype-%{version}/docs/reference/* docs/reference
 
 %build
-CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
-%{__make} setup unix \
-	CFG="--prefix=%{_prefix}"
+CFLAGS="%{rpmcflags}"
+CPPFLAGS="%{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}"
+export CFLAGS CPPFLAGS
+%configure
+%{__make} 
 
-%{__make}
+%if %{with x11}
 %{__make} -C ft2demos-* \
 	TOP_DIR="`pwd`"
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	datadir=%{_datadir}
+	DESTDIR=$RPM_BUILD_ROOT
 
+%if %{with x11}
 install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/testname $RPM_BUILD_ROOT%{_bindir}/fttestname
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -217,6 +222,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
+%if %{with x11}
 %files demos
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ft*
+%endif
