@@ -100,7 +100,7 @@ LDFLAGS="-s"; export LDFLAGS
 %configure \
         --enable-static \
         --with-gnu-ld
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
