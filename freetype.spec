@@ -78,10 +78,11 @@ Przyk³adowe aplikacje wykorzystuj±ce freetype
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure --prefix=/usr \
-            --enable-static \
-            --with-locale-dir=/usr/share/locale \
-            --with-gnu-ld
+./configure %{_target} \
+	--prefix=/usr \
+        --enable-static \
+        --with-locale-dir=/usr/share/locale \
+        --with-gnu-ld
 make
 
 %install
