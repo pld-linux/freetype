@@ -1,16 +1,18 @@
 Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
-Version:	2.0.2
-Release:	2
-License:	GPL
+Version:	2.0.4
+Release:	1
+License:	GPL or FTL
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/%{name}-%{version}-test.tar.bz2
+Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/%{name}-%{version}.tar.bz2
+Source1:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/ftdocs-%{version}.tar.bz2
 Patch0:		%{name}2-DESTDIR.patch
-Patch1:		%{name}2-include-nowarn.patch
+Patch1:		%{name}2-gsf-segv.patch
 URL:		http://www.freetype.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
@@ -68,7 +70,7 @@ Static freetype libraries.
 Biblioteki statyczne freetype.
 
 %prep
-%setup -q -n freetype-%{version}-test
+%setup -q -b1
 %patch0 -p1
 %patch1 -p1
 
@@ -83,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
-gzip -9nf LICENSE.TXT
+gzip -9nf docs/{CHANGES,FTL.txt,PATENTS,license.txt,todo,cache.txt}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -93,11 +95,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz docs/*.html
+%doc docs/*.gz
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
 %defattr(644,root,root,755)
+%doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
