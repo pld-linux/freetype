@@ -116,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc howto/unix* docs/*txt* *.gz
 %attr(755,root,root) %{_libdir}/lib*.so
-/usr/include/*
+%{_includedir}/*
 
 %files static
 %defattr(644,root,root,755)
