@@ -1,9 +1,9 @@
 #
 # Conditional build:
-# _with_bytecode	- with TT bytecode interpreter
-#			(patents pending in USA, Japan...)
+%bcond_without	bytecode	# without TT bytecode interpreter
+#		 (patents pending in USA, Japan etc., but now it includes
+#		  also patent-free hinting workaround)
 #
-%define	_docver	2.1.4
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
 Summary(ko):	¿⁄¿Ø∑”∞‘ æÓµµÁ æµ ºˆ ¿÷¥¬ ∆Æ∑Á≈∏¿‘ ±€≤√¿ª ¥Ÿ∑Á¥¬ ø£¡¯
@@ -12,17 +12,16 @@ Summary(pt_BR):	Biblioteca de renderizaÁ„o de fontes TrueType
 Summary(ru):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘œ◊ TrueType
 Summary(uk):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘¶◊ TrueType
 Name:		freetype
-Version:	2.1.5
-Release:	2
+Version:	2.1.7
+Release:	1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	54537b518b84d04190a1eccd393a29df
-Source1:	http://dl.sourceforge.net/%{name}/ftdocs-%{_docver}.tar.bz2
-# Source1-md5:	367064e81998a302f3844f1dcdb8d77f
-Source2:	http://dl.sourceforge.net/%{name}/ft2demos-%{version}.tar.bz2
-# Source2-md5:	0484cfc7d881ccb49cafa85ec3198f3c
-Patch0:		%{name}-free.patch
+Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
+# Source0-md5:	d5c39853f6741c8401bfe272478958a8
+Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
+# Source1-md5:	56579e3610482522061cfafbb788a81b
+Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
+# Source2-md5:	89a5b3fd3177fbc71f9ba7cbc64edfa2
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -168,9 +167,8 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
-%patch -p1
 
-mv -f freetype-%{_docver}/docs/reference/* docs/reference
+mv -f freetype-%{version}/docs/reference/* docs/reference
 
 %build
 CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
@@ -202,7 +200,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/{CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
-%attr(755,root,root) %{_libdir}/lib*so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
