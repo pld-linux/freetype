@@ -1,13 +1,14 @@
-Summary:     Truetype font rasterizer
-Summary(pl): Fonty Truetype 
-Name:        freetype
-Version:     1.2
-Release:     1
-Source:      ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/freetype-%{version}.tar.gz
-URL:         http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
-Copyright:   LGPL
-Group:       Libraries
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	Truetype font rasterizer
+Summary(pl):	Rasteryzer fontów Truetype
+Name:		freetype
+Version:	1.2
+Release:	2d
+Group:		Libraries
+Group(pl):	Biblioteki
+Copyright:	LGPL
+Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/freetype-%{version}.tar.gz
+URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 The FreeType engine is a free and portable TrueType font rendering engine,
@@ -15,40 +16,44 @@ available in ANSI C and Pascal source code.  It has been developed to
 provide TT support to a great variety of platforms and environments.
 
 %description -l pl
-FreeType daje mo¿liwo¶æ renderowania fontów TrueType. Kody ¼ród³owe napisane
+FreeType jest bibliotek± s³u¿±c± do rasteryzacji fontów TrueType.
+Kody ¼ród³owe napisane
 s± w ANSI C orza PASCAL'u. 
 
 %package devel
-Summary:     Development libraries for freetype
-Summary(pl): Biblioteki dla freetype
-Requires:    freetype = %{version}
-Group:       Development/Libraries
+Summary:	Header files and development documentation
+Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	freetype = %{version}
 
 %description devel
-This package includes the header files and libraries necessary to develop
-applications that use freetype.
+This package includes the header files documentations and libraries
+necessary to develop applications that use freetype.
 
 %description -l pl devel 
-Pakiet ten zawiera pliki nag³ówków oraz biblioteki, dla progranmistów chc±cych
-wykorzystaæ freetype w swoich aplikacjach. 
+Pakiet ten zawiera pliki nag³ówkowe oraz biblioteki niezbêdne przy
+kompilowaniu program wykorzystuj±cych bibliotekê freetype.
 
 %package static
-Summary:     Static freetype libraries
-Summary(pl): Biblioteki statyczne freetype
-Requires:    %{name}-devel = %{version}
-Group:       Development/Libraries
+Summary:	Freetype static libraries
+Summary(pl):	Biblioteki statyczne freetype
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
 
 %description static
 Static freetype libraries.
 
 %description -l pl static 
-Biblioteki statyczne freetype
+Biblioteki statyczne freetype.
 
 %package progs
-Summary:     Freetype library utilities
-Summary(pl): Programy u¿ytkowe freetype
-Requires:    %{name} = %{version}
-Group:       Utilities
+Summary:	Freetype library utilities
+Summary(pl):	Programy u¿ytkowe freetype
+Group:		Utilities
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
 
 %description progs
 Freetype library utilites:
@@ -70,7 +75,7 @@ Przyk³adowe aplikacje wykorzystuj±ce freetype
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s \
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure --prefix=/usr \
             --enable-static \
             --with-locale-dir=/usr/share/locale \
@@ -79,12 +84,14 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make prefix=$RPM_BUILD_ROOT/usr \
-     localedir=$RPM_BUILD_ROOT/usr/share/locale \
-     gnulocaledir=$RPM_BUILD_ROOT/usr/share/locale \
-     install
+make install \
+	prefix=$RPM_BUILD_ROOT/usr \
+	localedir=$RPM_BUILD_ROOT/usr/share/locale \
+	gnulocaledir=$RPM_BUILD_ROOT/usr/share/locale
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+
+bzip2 -9 HOWTO.txt README announce license.txt docs/{*.txt,*lsm,*doc,FAQ,TODO}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -93,9 +100,9 @@ strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
-%doc docs/* HOWTO.txt README announce license.txt
-%attr(755, root, root) /usr/lib/lib*so.*.*
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/lib/lib*so.*.*
+
 %lang(cs) /usr/share/locale/cs/LC_MESSAGES/freetype.mo
 %lang(de) /usr/share/locale/de/LC_MESSAGES/freetype.mo
 %lang(es) /usr/share/locale/es/LC_MESSAGES/freetype.mo
@@ -103,17 +110,25 @@ rm -rf $RPM_BUILD_ROOT
 %lang(nl) /usr/share/locale/nl/LC_MESSAGES/freetype.mo
 
 %files devel
-%defattr(644, root, root)
+%defattr(644,root,root)
+%doc docs/* *.bz2
+%attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
-/usr/lib/lib*.so
 
 %files static
-%attr(644, root, root) /usr/lib/lib*.a
+%attr(644,root,root) /usr/lib/lib*.a
 
 %files progs
-%attr(755, root, root) /usr/bin/*
+%attr(755,root,root) /usr/bin/*
 
 %changelog
+* Sun Jan 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2-2d]
+- fixed pl transtion,
+- added Group(pl),
+- all %doc moved to devel,
+- added bzipping2 %doc,
+- fixed permission on /usr/lib/lib*.so in devel (must be 755).
 
 * Mon Jul 20 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [1.1-2]
