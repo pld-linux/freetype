@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files progs
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 
 %changelog
 * Sat Apr 23 1999 Artur Frysiak <wiget@pld.org.pl>
@@ -186,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 - added %lang macros for files %{_datadir}/locale/*/LC_MESSAGES/freetype.mo
   files,
 - added stripping /usr/lib/lib*so.*.*,
-- programs from /usr/bin/ moved to separated progs subpackage.
+- programs from %{_bindir}/ moved to separated progs subpackage.
 
 * Wed Feb 18 1998 Arne Coucheron <arneco@online.no>
 - First release, 1.0-1
