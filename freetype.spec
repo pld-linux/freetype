@@ -10,22 +10,16 @@ Summary(pt_BR):	Biblioteca de renderizaГЦo de fontes TrueType
 Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
-Version:	2.1.2
-Release:	2
+Version:	2.1.3
+Release:	1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
 Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
-Patch0:		%{name}2-DESTDIR.patch
-Patch1:		%{name}2-bytecode.patch
-Patch2:		%{name}2-bluefuzz.patch
-Patch3:		%{name}2-cvs-autohint.patch
-Patch4:		%{name}2-fix-metrics.patch
-Patch5:		%{name}2-missing-glyph.patch
-Patch6:		%{name}2-ps-hinter.patch
-Patch7:		%{name}2-slighthint.patch
-Patch8:		%{name}2-transform.patch
+Patch0:		%{name}2-bytecode.patch
+Patch1:		%{name}2-fix-metrics.patch
+Patch2:		%{name}2-slighthint.patch
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -166,15 +160,9 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -b1 -a2
-%patch0 -p1
-%{!?_without_bytecode:%patch1 -p1}
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p2
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
+#%{!?_without_bytecode:%patch0 -p1}
+#%patch1 -p1
+#%patch2 -p1
 
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
