@@ -137,11 +137,11 @@ Biblioteki statyczne FreeType.
 %description static -l pt_BR
 Bibliotecas estАticas para desenvolvimento com freetype.
 
-%description devel-static -l ru
+%description static -l ru
 Этот пакет содержит статические библиотеки, необходимые для написания
 программ, использующих freetype.
 
-%description devel-static -l uk
+%description static -l uk
 Цей пакет м╕стить статичн╕ б╕бл╕отеки, необх╕дн╕ для написання
 програм, що використовують freetype.
 
