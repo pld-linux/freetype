@@ -10,7 +10,7 @@ Summary(pt_BR):	Biblioteca de renderizaГЦo de fontes TrueType
 Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
-Version:	2.1.1
+Version:	2.1.2
 Release:	1
 License:	GPL or FTL
 Group:		Libraries
@@ -167,7 +167,7 @@ CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
 
 %{__make}
 
-%{__make} TOP="`pwd`" -C ft2demos-*
+%{__make} TOP_DIR="`pwd`" -C ft2demos-*
 
 %install
 rm -rf $RPM_BUILD_ROOT
