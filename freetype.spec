@@ -26,6 +26,7 @@ Patch0:		%{name}-free.patch
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
+BuildRequires:	automake
 BuildRequires:	zlib-devel
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -177,7 +178,8 @@ CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}"
 	CFG="--prefix=%{_prefix}"
 
 %{__make}
-%{__make} TOP_DIR="`pwd`" -C ft2demos-*
+%{__make} -C ft2demos-* \
+	TOP_DIR="`pwd`"
 
 %install
 rm -rf $RPM_BUILD_ROOT
