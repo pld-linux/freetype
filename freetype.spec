@@ -1,12 +1,13 @@
 Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
-Version:	1.2
-Release:	6
+Version:	1.3
+Release:	1
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
+Patch:		freetype-DESTDIR.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
@@ -75,12 +76,13 @@ Przyk³adowe aplikacje wykorzystuj±ce freetype
 
 %prep
 %setup -q
+%patch -p1
 
 %build
+gettextize --copy --force
 autoconf
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=%{_prefix} \
+LDFLAGS="-s"; export LDFLAGS
+%configure \
         --enable-static \
         --with-locale-dir=%{_datadir}/locale \
         --with-gnu-ld
@@ -88,14 +90,11 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install \
-	prefix=$RPM_BUILD_ROOT/usr \
-	localedir=$RPM_BUILD_ROOT%{_datadir}/locale \
-	gnulocaledir=$RPM_BUILD_ROOT%{_datadir}/locale
+make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
-gzip -9nf howto/unix.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
+gzip -9nf howto/unix.txt README announce docs/{*.txt,FAQ,TODO,credits}
 
 %find_lang %{name}
 
