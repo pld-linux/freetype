@@ -14,7 +14,7 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.7
-Release:	2
+Release:	3
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
@@ -176,11 +176,13 @@ CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" 
 %{__make} setup unix \
        CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
-%{__make} 
+%{__make} \
+	X11_LIB="/usr/X11R6/%{_lib}"
 
 %if %{with x11}
 %{__make} -C ft2demos-* \
-	TOP_DIR="`pwd`"
+	TOP_DIR="`pwd`" \
+	X11_LIB="/usr/X11R6/%{_lib}"
 %endif
 
 %install
