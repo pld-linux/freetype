@@ -126,6 +126,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/bin/*
 
 %changelog
+* Sat Apr 23 1999 Artur Frysiak <wiget@pld.org.pl>
+  [1.2-5]
+- recompiled on new rpm.
+
 * Wed Feb 17 1999 Micha³ Kuratczyk <kura@wroclaw.art.pl>
   [1.2-3d]
 - added "Conflicts: glibc <= 2.0.7" for installing in proper enviroment,
