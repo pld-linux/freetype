@@ -1,0 +1,25 @@
+Don't try to free fields which are just ints (not pointers to ints) - it caused SEGV.
+--- freetype-2.1.5/src/type1/t1objs.c.orig	2003-07-26 00:09:53.000000000 +0200
++++ freetype-2.1.5/src/type1/t1objs.c	2003-10-19 00:52:48.000000000 +0200
+@@ -229,9 +229,6 @@
+       FT_FREE( type1->encoding.char_name );
+       FT_FREE( type1->font_name );
+ 
+-      FT_FREE( type1->paint_type );
+-      FT_FREE( type1->stroke_width );
+-
+ #ifndef T1_CONFIG_OPTION_NO_AFM
+       /* release afm data if present */
+       if ( face->afm_data )
+--- freetype-2.1.5/src/type42/t42objs.c.orig	2003-07-26 00:09:53.000000000 +0200
++++ freetype-2.1.5/src/type42/t42objs.c	2003-10-19 00:55:21.000000000 +0200
+@@ -398,9 +398,6 @@
+       FT_FREE( type1->encoding.char_name );
+       FT_FREE( type1->font_name );
+ 
+-      FT_FREE( type1->paint_type );
+-      FT_FREE( type1->stroke_width );
+-
+       FT_FREE( face->ttf_data );
+ 
+ #if 0
