@@ -172,10 +172,10 @@ Programy demonstracyjne do biblioteki FreeType.
 mv -f freetype-%{version}/docs/reference/* docs/reference
 
 %build
-CFLAGS="%{rpmcflags}"
-CPPFLAGS="%{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}"
-export CFLAGS CPPFLAGS
-%configure
+CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
+%{__make} setup unix \
+       CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
+
 %{__make} 
 
 %if %{with x11}
