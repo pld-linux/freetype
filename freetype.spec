@@ -1,8 +1,9 @@
 #
 # Conditional build:
-%bcond_without	bytecode	# without TT bytecode interpreter
-#		 (patents pending in USA, Japan etc., but now it includes
-#		  also patent-free hinting workaround)
+%bcond_with	bytecode	# with TT bytecode interpreter
+#		 (patents pending in USA, Japan etc., but now it 
+#		  includes also patent-free hinting workaround
+#		  (but it sucks hard! - auto-hinter is much better))
 %bcond_without	x11
 #
 Summary:	TrueType font rasterizer
