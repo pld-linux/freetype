@@ -15,11 +15,11 @@ Version:	2.1.4
 Release:	3
 License:	GPL or FTL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
 # Source0-md5: 1fc0b188f1fe1216776e5855d2da141f
-Source1:	http://dl.sourceforge.net/sourceforge/freetype/ftdocs-%{version}.tar.bz2
+Source1:	http://dl.sourceforge.net/freetype/ftdocs-%{version}.tar.bz2
 # Source1-md5: 367064e81998a302f3844f1dcdb8d77f
-Source2:	http://dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}.tar.bz2
+Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
 # Source2-md5: 92cb4e645fe1cfb8345b64cedb9d332e
 Patch0:	ftlru.c.diff
 URL:		http://www.freetype.org/
