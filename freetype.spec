@@ -3,7 +3,7 @@
 %bcond_without	bytecode	# without TT bytecode interpreter
 #		 (patents pending in USA, Japan etc., but now it includes
 #		  also patent-free hinting workaround)
-%bcond_without x11
+%bcond_without	x11
 #
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
