@@ -1,6 +1,7 @@
---- freetype-2.1.1/builds/unix/install.mk.orig	Sun May  5 12:57:06 2002
-+++ freetype-2.1.1/builds/unix/install.mk	Sun Jun 16 11:06:20 2002
-@@ -17,27 +17,27 @@
+diff -urN freetype-2.1.2.org/builds/unix/install.mk freetype-2.1.2/builds/unix/install.mk
+--- freetype-2.1.2.org/builds/unix/install.mk	Sat Jun 29 18:56:40 2002
++++ freetype-2.1.2/builds/unix/install.mk	Sat Jun 29 18:58:33 2002
+@@ -17,46 +17,46 @@
  
  # Unix installation and deinstallation targets.
  install: $(PROJECT_LIBRARY)
@@ -8,13 +9,15 @@
 -                         $(includedir)/freetype2/freetype/config   \
 -                         $(includedir)/freetype2/freetype/internal \
 -                         $(includedir)/freetype2/freetype/cache    \
--                         $(bindir)
+-                         $(bindir)                                 \
+-                         $(prefix)/share/aclocal
 -	$(LIBTOOL) --mode=install $(INSTALL) $(PROJECT_LIBRARY) $(libdir)
 +	$(MKINSTALLDIRS) $(DESTDIR)$(libdir)                                 \
 +                         $(DESTDIR)$(includedir)/freetype2/freetype/config   \
 +                         $(DESTDIR)$(includedir)/freetype2/freetype/internal \
 +                         $(DESTDIR)$(includedir)/freetype2/freetype/cache    \
-+                         $(DESTDIR)$(bindir)
++                         $(DESTDIR)$(bindir)                                 \
++                         $(DESTDIR)$(datadir)/aclocal
 +	$(LIBTOOL) --mode=install $(INSTALL) $(PROJECT_LIBRARY) $(DESTDIR)$(libdir)
  	-for P in $(PUBLIC_H) ; do                               \
 -          $(INSTALL_DATA) $$P $(includedir)/freetype2/freetype ; \
@@ -37,6 +40,38 @@
  	$(INSTALL_SCRIPT) -m 755 $(OBJ_BUILD)/freetype-config \
 -          $(bindir)/freetype-config
 +          $(DESTDIR)$(bindir)/freetype-config
+ 	$(INSTALL_SCRIPT) -m 644 $(BUILD)/freetype2.m4 \
+-          $(prefix)/share/aclocal/freetype2.m4
++          $(DESTDIR)$(datadir)/aclocal/freetype2.m4
  
  
  uninstall:
+-	-$(LIBTOOL) --mode=uninstall $(RM) $(libdir)/$(LIBRARY).$A
+-	-$(DELETE) $(includedir)/freetype2/freetype/cache/*
+-	-$(DELDIR) $(includedir)/freetype2/freetype/cache
+-	-$(DELETE) $(includedir)/freetype2/freetype/config/*
+-	-$(DELDIR) $(includedir)/freetype2/freetype/config
+-	-$(DELETE) $(includedir)/freetype2/freetype/internal/*
+-	-$(DELDIR) $(includedir)/freetype2/freetype/internal
+-	-$(DELETE) $(includedir)/freetype2/freetype/*
+-	-$(DELDIR) $(includedir)/freetype2/freetype
+-	-$(DELDIR) $(includedir)/freetype2
+-	-$(DELETE) $(includedir)/ft2build.h
+-	-$(DELETE) $(bindir)/freetype-config
+-	-$(DELETE) $(prefix)/share/aclocal/freetype2.m4
++	-$(LIBTOOL) --mode=uninstall $(RM) $(DESTDIR)$(libdir)/$(LIBRARY).$A
++	-$(DELETE) $(DESTDIR)$(includedir)/freetype2/freetype/cache/*
++	-$(DELDIR) $(DESTDIR)$(includedir)/freetype2/freetype/cache
++	-$(DELETE) $(DESTDIR)$(includedir)/freetype2/freetype/config/*
++	-$(DELDIR) $(DESTDIR)$(includedir)/freetype2/freetype/config
++	-$(DELETE) $(DESTDIR)$(includedir)/freetype2/freetype/internal/*
++	-$(DELDIR) $(DESTDIR)$(includedir)/freetype2/freetype/internal
++	-$(DELETE) $(DESTDIR)$(includedir)/freetype2/freetype/*
++	-$(DELDIR) $(DESTDIR)$(includedir)/freetype2/freetype
++	-$(DELDIR) $(DESTDIR)$(includedir)/freetype2
++	-$(DELETE) $(DESTDIR)$(includedir)/ft2build.h
++	-$(DELETE) $(DESTDIR)$(bindir)/freetype-config
++	-$(DELETE) $(DESTDIR)$(datadir)/aclocal/freetype2.m4
+ 
+ 
+ check:
