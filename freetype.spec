@@ -2,12 +2,11 @@ Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
 Version:	1.2
-Release:	3d
+Release:	4
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-##########	ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype
-Source:		%{name}-%{version}.tar.gz
+Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -90,8 +89,6 @@ make install \
 	localedir=$RPM_BUILD_ROOT/usr/share/locale \
 	gnulocaledir=$RPM_BUILD_ROOT/usr/share/locale
 
-chmod 755 $RPM_BUILD_ROOT/usr/lib/lib*so.*
-
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
 gzip -9nf HOWTO.txt README announce docs/{*.txt,*.doc,FAQ,TODO,credits}
@@ -119,12 +116,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/*
 
 %files static
-%defattr(644,root,root,755) 
-/usr/lib/lib*.a
+%attr(644,root,root) /usr/lib/lib*.a
 
 %files progs
-%defattr(755,root,root,755)
-/usr/bin/*
+%attr(755,root,root) /usr/bin/*
 
 %changelog
 * Wed Feb 17 1999 Micha³ Kuratczyk <kura@wroclaw.art.pl>
