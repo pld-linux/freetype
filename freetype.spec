@@ -34,7 +34,7 @@ BuildRequires:	zlib-devel
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags_ia32	"-fomit-frame-pointer"
+%define		specflags_ia32	 -fomit-frame-pointer 
 # see <freetype/internal/ftserv.h>, the real horror
 %define		specflags	-fno-strict-aliasing
 
