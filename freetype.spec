@@ -74,7 +74,7 @@ Biblioteki statyczne freetype.
 %build
 CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
 
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
