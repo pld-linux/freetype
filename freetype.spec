@@ -27,7 +27,6 @@ Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
 # Source2-md5:	43ca06d7a926d07db4bbb1885c4a2971
 Patch0:		%{name}-link.patch
 URL:		http://www.freetype.org/
-BuildRequires:	SysVinit
 %{?with_x11:BuildRequires:	XFree86-devel}
 BuildRequires:	automake
 BuildRequires:	zlib-devel
