@@ -1,0 +1,72 @@
+diff --speed-large-files --minimal -Nru tmp/freetype-2.1.2/src/sfnt/ttcmap0.c work/freetype-2.1.2/src/sfnt/ttcmap0.c
+--- tmp/freetype-2.1.2/src/sfnt/ttcmap0.c	2002-06-11 09:03:35.000000000 +1000
++++ work/freetype-2.1.2/src/sfnt/ttcmap0.c	2002-10-01 18:12:43.000000000 +1000
+@@ -680,7 +680,7 @@
+             FT_INVALID_DATA;
+         }
+ 
+-        if ( offset )
++        if ( offset && offset != 0xFFFFU )
+         {
+           p += offset;  /* start of glyph id array */
+ 
+@@ -692,10 +692,10 @@
+           /* check glyph indices within the segment range */
+           if ( valid->level >= FT_VALIDATE_TIGHT )
+           {
+-            FT_UInt  idx;
++            FT_UInt  i, idx;
+ 
+ 
+-            for ( ; start < end; )
++            for ( i = start; i < end; i++ )
+             {
+               idx = FT_NEXT_USHORT( p );
+               if ( idx != 0 )
+@@ -708,6 +708,16 @@
+             }
+           }
+         }
++        /* Some fonts (erroneously?) use a range offset of 0xFFFF */
++        /* to mean missing glyph in cmap table                    */
++        /*                                                        */
++        else if ( offset == 0xFFFFU )
++        {
++          if ( valid->level >= FT_VALIDATE_PARANOID                     ||
++               n != num_segs - 1                                        ||
++               !( start == 0xFFFFU && end == 0xFFFFU && delta == 0x1U ) )
++            FT_INVALID_DATA;
++        }
+ 
+         last = end;
+       }
+@@ -769,6 +779,9 @@
+             p += num_segs2;
+             offset = TT_PEEK_USHORT( p );
+ 
++            if ( offset == 0xFFFFU )
++              goto Exit;
++
+             if ( offset != 0 )
+             {
+               p  += offset + 2 * ( idx - start );
+@@ -813,6 +826,9 @@
+             p += num_segs2;
+             offset = TT_PEEK_USHORT( p );
+ 
++            if ( offset == 0xFFFFU )
++              goto Exit;
++
+             if ( offset != 0 )
+             {
+               p  += offset + 2 * ( idx - start );
+@@ -879,6 +895,9 @@
+           p += num_segs2;
+           offset = TT_PEEK_USHORT( p );
+ 
++          if ( offset == 0xFFFFU )
++            goto Exit;
++
+           if ( offset != 0 )
+           {
+             /* parse the glyph ids array for non-0 index */

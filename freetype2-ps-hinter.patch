@@ -1,0 +1,30 @@
+--- freetype-2.1.1/src/pshinter/pshalgo2.c.primaryhints	Sat Jun 29 14:24:34 2002
++++ freetype-2.1.1/src/pshinter/pshalgo2.c	Sat Jun 29 14:48:05 2002
+@@ -1130,6 +1130,7 @@
+       /* process secondary hints to "selected" points */
+       if ( num_masks > 1 )
+       {
++	first = mask->end_point;
+         mask++;
+         for ( ; num_masks > 1; num_masks--, mask++ )
+         {
+--- freetype-2.1.2/src/pshinter/pshglob.c.stdw	Tue Jul  9 11:08:25 2002
++++ freetype-2.1.2/src/pshinter/pshglob.c	Tue Jul  9 11:25:36 2002
+@@ -629,7 +629,7 @@
+         PSH_Width      write = dim->stdw.widths;
+ 
+ 
+-        write->org = priv->standard_width[1];
++        write->org = priv->standard_width[0];
+         write++;
+ 
+         read = priv->snap_widths;
+@@ -649,7 +649,7 @@
+         PSH_Width      write = dim->stdw.widths;
+ 
+ 
+-        write->org = priv->standard_height[1];
++        write->org = priv->standard_height[0];
+         write++;
+ 
+         read = priv->snap_heights;
