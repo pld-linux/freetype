@@ -1,22 +1,31 @@
 Summary:	Truetype font rasterizer
 Summary(pl):	Rasteryzer fontów Truetype
 Name:		freetype
-Version:	1.3
-Release:	2
-Copyright:	LGPL
+Version:	1.3.1
+Release:	1
+License:	BSD like
 Group:		Libraries
 Group(pl):	Biblioteki
 Source:		ftp://ftp.physiol.med.tu-muenchen.de/pub/freetype/%{name}-%{version}.tar.gz
-Patch:		freetype-DESTDIR.patch
+Patch0:		freetype-DESTDIR.patch
+Patch1:		freetype-autoconf.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-The FreeType engine is a free and portable TrueType font rendering engine,
-available in ANSI C and Pascal source code.  It has been developed to
-provide TT support to a great variety of platforms and environments.
+The FreeType engine is a free and portable TrueType font rendering engine.
+It has been developed to provide TrueType support to a great variety of
+platforms and environments.
+                                                                                                              
+Note that FreeType is a *library*. It is not a font server for your favorite
+platform, even though it was designed to be used in many of them. Note also
+that it is *not* a complete text-rendering library.  Its purpose is simply
+to open and manage font files, as well as load, hint and render individual
+glyphs efficiently. You can also see it as a "TrueType driver" for a
+higher-level library, though rendering text with it is extremely easy, as
+demo-ed by the test programs.
 
 %description -l pl
 FreeType jest bibliotek± s³u¿±c± do rasteryzacji fontów TrueType.
@@ -76,16 +85,17 @@ Freetype library utilites:
 Przyk³adowe aplikacje wykorzystuj±ce freetype.
 
 %prep
-%setup -q
-%patch -p1
+%setup  -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 gettextize --copy --force
+aclocal
 autoconf
 LDFLAGS="-s"; export LDFLAGS
 %configure \
         --enable-static \
-        --with-locale-dir=%{_datadir}/locale \
         --with-gnu-ld
 make
 
@@ -112,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc howto/unix* docs/*txt* *.gz
 %attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/*
 
 %files static
