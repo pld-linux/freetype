@@ -81,9 +81,9 @@ incluídos neste pacote.
 
 %package devel
 Summary:	Header files and development documentation
-Summary(es):	Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType.
+Summary(es):	Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType
 Summary(pl):	Pliki nag³ówkowe biblioteki freetype i dokumentacja
-Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas para desenvolvimento com FreeType.
+Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas para desenvolvimento com FreeType
 Summary(ru):	âÉÂÌÉÏÔÅËÉ ÒÁÚÒÁÂÏÔŞÉËÁ ÄÌÑ freetype
 Summary(uk):	â¦ÂÌ¦ÏÔÅËÉ ĞÒÏÇÒÁÍ¦ÓÔÁ ÄÌÑ freetype
 Group:		Development/Libraries
