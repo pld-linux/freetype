@@ -11,15 +11,12 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.4
-%define		_status	rc1
-Release:	0.%{_status}.1
-# no doc and demos in rc.
-%define	docver	2.1.3
+Release:	1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}%{_status}.tar.bz2
-Source1:	http://dl.sourceforge.net/sourceforge/freetype/ftdocs-%{docver}.tar.bz2
-Source2:	http://dl.sourceforge.net/sourceforge/freetype/ft2demos-%{docver}.tar.bz2
+Source0:	http://dl.sourceforge.net/sourceforge/freetype/%{name}-%{version}.tar.bz2
+Source1:	http://dl.sourceforge.net/sourceforge/freetype/ftdocs-%{version}.tar.bz2
+Source2:	http://dl.sourceforge.net/sourceforge/freetype/ft2demos-%{version}.tar.bz2
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -157,9 +154,9 @@ Demonstration programs for FreeType library.
 Programy demonstracyjne do biblioteki FreeType.
 
 %prep
-%setup -q -n %{name}-%{version}%{_status} -a1 -a2
+%setup -q -a1 -a2
 
-mv -f freetype-%{docver}/docs/* docs
+mv -f freetype-%{version}/docs/* docs
 
 %build
 CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
@@ -189,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/{BUGS,CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
+%doc docs/{CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
 %attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
