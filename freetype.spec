@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	bytecode	# without TT bytecode interpreter
+%bcond_without	bytecode	# without TT bytecode interpreter
 #		 (patents pending in USA, Japan etc., but now it includes
 #		  also patent-free hinting workaround)
 %bcond_without	x11
@@ -14,7 +14,7 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.7
-Release:	4
+Release:	5
 License:	GPL or FTL
 Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
