@@ -3,6 +3,7 @@
 # _with_bytecode	- with TT bytecode interpreter
 #			(patents pending in USA, Japan...)
 #
+%define	_docver	2.1.4
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
 Summary(ko):	¿⁄¿Ø∑”∞‘ æÓµµÁ æµ ºˆ ¿÷¥¬ ∆Æ∑Á≈∏¿‘ ±€≤√¿ª ¥Ÿ∑Á¥¬ ø£¡¯
@@ -11,23 +12,22 @@ Summary(pt_BR):	Biblioteca de renderizaÁ„o de fontes TrueType
 Summary(ru):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘œ◊ TrueType
 Summary(uk):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘¶◊ TrueType
 Name:		freetype
-Version:	2.1.4
-Release:	3
+Version:	2.1.5
+Release:	1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5: 1fc0b188f1fe1216776e5855d2da141f
-Source1:	http://dl.sourceforge.net/freetype/ftdocs-%{version}.tar.bz2
-# Source1-md5: 367064e81998a302f3844f1dcdb8d77f
-Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5: 92cb4e645fe1cfb8345b64cedb9d332e
-Patch0:	ftlru.c.diff
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	54537b518b84d04190a1eccd393a29df
+Source1:	http://dl.sourceforge.net/%{name}/ftdocs-%{_docver}.tar.bz2
+# Source1-md5:	367064e81998a302f3844f1dcdb8d77f
+Source2:	http://dl.sourceforge.net/%{name}/ft2demos-%{version}.tar.bz2
+# Source2-md5:	0484cfc7d881ccb49cafa85ec3198f3c
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
 BuildRequires:	zlib-devel
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	freetype2
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ia32	"-fomit-frame-pointer"
 
@@ -166,9 +166,8 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
-patch src/cache/ftlru.c < %{PATCH0}
 
-mv -f freetype-%{version}/docs/* docs
+mv -f freetype-%{_docver}/docs/reference/* docs/reference
 
 %build
 CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
@@ -176,7 +175,6 @@ CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}"
 	CFG="--prefix=%{_prefix}"
 
 %{__make}
-
 %{__make} TOP_DIR="`pwd`" -C ft2demos-*
 
 %install
@@ -189,7 +187,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_bindir}
 install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
-install ft2demos-*/bin/.libs/testnames $RPM_BUILD_ROOT%{_bindir}/fttestnames
+install ft2demos-*/bin/.libs/testname $RPM_BUILD_ROOT%{_bindir}/fttestname
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -204,13 +202,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/*.html docs/{design,freetype2,glyphs,reference,tutorial}
+%doc docs/{DEBUG,TRUETYPE} docs/reference
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/freetype2
 %{_includedir}/*.h
 %{_aclocaldir}/*.m4
+%{_pkgconfigdir}/*.pc
 
 %files static
 %defattr(644,root,root,755)
