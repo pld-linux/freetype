@@ -1,6 +1,5 @@
-diff -Nur freetype-2.0.2-test/builds/unix/install.mk freetype-2.0.2-test.new/builds/unix/install.mk
---- freetype-2.0.2-test/builds/unix/install.mk	Wed Dec 20 23:09:41 2000
-+++ freetype-2.0.2-test.new/builds/unix/install.mk	Sun Mar 18 23:49:58 2001
+--- freetype-2.1.1/builds/unix/install.mk.orig	Sun May  5 12:57:06 2002
++++ freetype-2.1.1/builds/unix/install.mk	Sun Jun 16 11:06:20 2002
 @@ -17,27 +17,27 @@
  
  # Unix installation and deinstallation targets.
@@ -35,7 +34,7 @@ diff -Nur freetype-2.0.2-test/builds/unix/install.mk freetype-2.0.2-test.new/bui
          done
 -	$(INSTALL_DATA) $(BUILD)/ft2unix.h $(includedir)/ft2build.h
 +	$(INSTALL_DATA) $(BUILD)/ft2unix.h $(DESTDIR)$(includedir)/ft2build.h
- 	$(INSTALL_SCRIPT) -m 755 $(BUILD)/freetype-config \
+ 	$(INSTALL_SCRIPT) -m 755 $(OBJ_BUILD)/freetype-config \
 -          $(bindir)/freetype-config
 +          $(DESTDIR)$(bindir)/freetype-config
  
