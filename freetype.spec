@@ -1,11 +1,8 @@
 #
-# todo: update patches
-#
 # Conditional build:
-# _with_bytecode	- without TT bytecode interpreter
+# _with_bytecode	- with TT bytecode interpreter
 #			(patents pending in USA, Japan...)
 #
-
 Summary:	TrueType font rasterizer
 Summary(es):	Biblioteca de render 3D de fuentes TrueType
 Summary(pl):	Rasteryzer fontów TrueType
@@ -20,7 +17,6 @@ Group:		Libraries
 Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
 Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
-Patch0:		%{name}2-bytecode.patch
 URL:		http://www.freetype.org/
 BuildRequires:	SysVinit
 BuildRequires:	XFree86-devel
@@ -161,10 +157,10 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -b1 -a2
-%{?_with_bytecode:%patch0 -p1}
 
 %build
-CFLAGS="%{rpmcflags}" %{__make} setup CFG="--prefix=%{_prefix}"
+CFLAGS="%{rpmcflags} %{?_with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
+%{__make} setup CFG="--prefix=%{_prefix}"
 
 %{__make}
 
