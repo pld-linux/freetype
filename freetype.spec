@@ -16,7 +16,6 @@ Patch3:		%{name}-nospaces.patch
 URL:		http://www.physiol.med.tu-muenchen.de/~robert/freetype.html
 BuildRequires:	gettext-devel
 BuildRequires:	XFree86-devel
-BuildRequires:  libttf-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
