@@ -12,6 +12,7 @@ Source0:	ftp://freetype.sourceforge.net/pub/freetype/%{name}2/%{name}-%{version}
 Patch0:		%{name}2-DESTDIR.patch
 URL:		http://www.freetype.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	freetype2
 
 %description
 The FreeType engine is a free and portable TrueType font rendering
@@ -38,6 +39,8 @@ Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Obsoletes:	freetype2-devel
+Obsoletes:	freetype2-static
 
 %description devel
 This package includes the header files documentations and libraries
@@ -55,6 +58,7 @@ Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
+Obsoletes:	freetype2-static
 
 %description static
 Static freetype libraries.
