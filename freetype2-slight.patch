@@ -1,0 +1,93 @@
+diff -urdB ./src/autohint/ahhint.c /home/dchest/ft-cvs/freetype2/src/autohint/ahhint.c
+--- ./src/autohint/ahhint.c	2002-09-08 17:29:10.000000000 -0400
++++ ./src/autohint/ahhint.c	2002-09-20 16:16:14.000000000 -0400
+@@ -109,8 +109,14 @@
+     {
+       /* smooth hinting process, very lightly quantize the stem width */
+       /*                                                              */
+-      if ( dist < 64 )
+-        dist = 64;
++
++      if ( vertical ) {
++         if ( dist < 24 )
++            dist = 24;
++         if ( sign )
++            dist=-dist;
++         return dist;
++      }
+ 
+       {
+         FT_Pos  delta = dist - globals->stds[vertical];
+@@ -1438,24 +1444,10 @@
+ 
+     ah_loader_rewind( hinter->loader );
+ 
+-    /* reset hinting flags according to load flags and current render target */
+-    hinter->do_horz_hints = !FT_BOOL( load_flags & FT_LOAD_NO_AUTOHINT );
+-    hinter->do_vert_hints = !FT_BOOL( load_flags & FT_LOAD_NO_AUTOHINT );
+-
+-#ifdef DEBUG_HINTER
+-    hinter->do_horz_hints = !ah_debug_disable_vert;  /* not a bug, the meaning */
+-    hinter->do_vert_hints = !ah_debug_disable_horz;  /* of h/v is inverted!    */
+-#endif
+-
+-    /* we snap the width of vertical stems for the monochrome and         */
+-    /* horizontal LCD rendering targets only.  Corresponds to X snapping. */
+-    hinter->do_horz_snapping = FT_BOOL( hint_mode == FT_RENDER_MODE_MONO ||
+-                                        hint_mode == FT_RENDER_MODE_LCD  );
+-
+-    /* we snap the width of horizontal stems for the monochrome and     */
+-    /* vertical LCD rendering targets only.  Corresponds to Y snapping. */
+-    hinter->do_vert_snapping = FT_BOOL( hint_mode == FT_RENDER_MODE_MONO   ||
+-                                        hint_mode == FT_RENDER_MODE_LCD_V  );
++    hinter->do_vert_snapping = 0;
++    hinter->do_horz_snapping = 0;
++    hinter->do_vert_hints = 1;
++    hinter->do_horz_hints = 0;
+ 
+ #if 1
+     load_flags  = FT_LOAD_NO_SCALE
+diff -urdB ./src/base/ftobjs.c /home/dchest/ft-cvs/freetype2/src/base/ftobjs.c
+--- ./src/base/ftobjs.c	2002-09-18 19:18:36.000000000 -0400
++++ ./src/base/ftobjs.c	2002-09-20 16:06:29.000000000 -0400
+@@ -1290,8 +1290,8 @@
+       char_height = 1 * 64;
+ 
+     /* Compute pixel sizes in 26.6 units */
+-    dim_x = ( ( ( char_width  * horz_resolution ) / 72 ) + 32 ) & -64;
+-    dim_y = ( ( ( char_height * vert_resolution ) / 72 ) + 32 ) & -64;
++    dim_x = ( ( ( char_width  * horz_resolution ) / 72 ) + 32 );
++    dim_y = ( ( ( char_height * vert_resolution ) / 72 ) + 32 );
+ 
+     metrics->x_ppem  = (FT_UShort)( dim_x >> 6 );
+     metrics->y_ppem  = (FT_UShort)( dim_y >> 6 );
+diff -urdB ./src/pshinter/pshalgo3.c /home/dchest/ft-cvs/freetype2/src/pshinter/pshalgo3.c
+--- ./src/pshinter/pshalgo3.c	2002-09-17 03:31:17.000000000 -0400
++++ ./src/pshinter/pshalgo3.c	2002-09-20 16:12:04.000000000 -0400
+@@ -444,7 +444,7 @@
+       FT_Pos            fit_len;
+       PSH_AlignmentRec  align;
+ 
+-
++      
+       /* ignore stem alignments when requested through the hint flags */
+       if ( ( dimension == 0 && !glyph->do_horz_hints ) ||
+            ( dimension == 1 && !glyph->do_vert_hints ) )
+@@ -1711,14 +1711,10 @@
+     if ( error )
+       goto Exit;
+ 
+-    glyph->do_horz_hints = 1;
++    glyph->do_vert_snapping = 0;
++    glyph->do_horz_snapping = 0;
+     glyph->do_vert_hints = 1;
+-
+-    glyph->do_horz_snapping = FT_BOOL( hint_mode == FT_RENDER_MODE_MONO ||
+-                                       hint_mode == FT_RENDER_MODE_LCD  );
+-
+-    glyph->do_vert_snapping = FT_BOOL( hint_mode == FT_RENDER_MODE_MONO  ||
+-                                       hint_mode == FT_RENDER_MODE_LCD_V );
++    glyph->do_horz_hints = 0;
+ 
+     for ( dimension = 0; dimension < 2; dimension++ )
+     {
