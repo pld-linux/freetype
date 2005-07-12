@@ -13,23 +13,22 @@ Summary(pt_BR):	Biblioteca de renderizaГЦo de fontes TrueType
 Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
-Version:	2.1.9
+Version:	2.1.10
 Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	ftp://ftp.freetype.org/freetype/freetype2/%{name}-%{version}.tar.bz2
-# Source0-md5:	ec1b903e4be5f073caa72458ea58c29c
-Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-%{version}.tar.bz2
-# Source1-md5:	db77177afe35955f55bcaa2953724b78
-#Source1:	ftp://ftp.freetype.org/freetype/freetype2/ftdocs-2.1.7.tar.bz2
-Source2:	ftp://ftp.freetype.org/freetype/freetype2/ft2demos-%{version}.tar.bz2
-# Source2-md5:	43ca06d7a926d07db4bbb1885c4a2971
-Patch0:		%{name}-link.patch
+Source0:	http://savannah.nongnu.org/download/freetype/%{name}-%{version}.tar.bz2
+# Source0-md5:	a4012e7d1f6400df44a16743b11b8423
+Source1:	http://savannah.nongnu.org/download/freetype/%{name}-doc-%{version}.tar.bz2
+# Source1-md5:	10608a55ee9ee12e29ba3d705318e61d
+Source2:	http://savannah.nongnu.org/download/freetype/ft2demos-%{version}.tar.bz2
+# Source2-md5:	4edaff5721fedcf1932e76935f3029b3
 URL:		http://www.freetype.org/
 %{?with_x11:BuildRequires:	XFree86-devel}
 BuildRequires:	automake
 BuildRequires:	zlib-devel
+BuildRequires:	python
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -172,9 +171,6 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
-%patch0 -p1
-
-mv -f freetype-%{version}/docs/reference/* docs/reference
 
 %build
 CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
@@ -189,6 +185,8 @@ CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" 
 	TOP_DIR="`pwd`" \
 	X11_LIB="/usr/X11R6/%{_lib}"
 %endif
+
+%{__make} refdoc
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -211,7 +209,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/{CHANGES,FTL.txt,PATENTS,license.txt,TODO,modules.txt}
+%doc docs/{CHANGES,FTL.TXT,PATENTS,LICENSE.TXT,TODO,modules.txt}
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
