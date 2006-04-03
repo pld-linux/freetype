@@ -14,7 +14,7 @@ Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
 Version:	2.1.10
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
@@ -25,7 +25,7 @@ Source1:	http://savannah.nongnu.org/download/freetype/%{name}-doc-%{version}.tar
 Source2:	http://savannah.nongnu.org/download/freetype/ft2demos-%{version}.tar.bz2
 # Source2-md5:	4edaff5721fedcf1932e76935f3029b3
 URL:		http://www.freetype.org/
-%{?with_x11:BuildRequires:	XFree86-devel}
+%{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
 BuildRequires:	automake
 BuildRequires:	zlib-devel
 BuildRequires:	python
