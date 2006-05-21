@@ -13,22 +13,22 @@ Summary(pt_BR):	Biblioteca de renderizaÁ„o de fontes TrueType
 Summary(ru):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘œ◊ TrueType
 Summary(uk):	Ú¡”‘≈“…⁄¡‘œ“ €“…∆‘¶◊ TrueType
 Name:		freetype
-Version:	2.1.10
-Release:	2
+Version:	2.2.1
+Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	http://savannah.nongnu.org/download/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	a4012e7d1f6400df44a16743b11b8423
+# Source0-md5:	5b2f827082c544392a7701f7423f0781
 Source1:	http://savannah.nongnu.org/download/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	10608a55ee9ee12e29ba3d705318e61d
+# Source1-md5:	27bcd2540702afe6753c9fd74670f617
 Source2:	http://savannah.nongnu.org/download/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	4edaff5721fedcf1932e76935f3029b3
+# Source2-md5:	64f5fa4425cd8241b130c0be35ba6760
 URL:		http://www.freetype.org/
-%{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
 BuildRequires:	automake
-BuildRequires:	zlib-devel
 BuildRequires:	python
+%{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
+BuildRequires:	zlib-devel
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -178,12 +178,12 @@ CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" 
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
 %{__make} \
-	X11_LIB="/usr/X11R6/%{_lib}"
+	X11_LIB=
 
 %if %{with x11}
 %{__make} -C ft2demos-* \
 	TOP_DIR="`pwd`" \
-	X11_LIB="/usr/X11R6/%{_lib}"
+	X11_LIB=
 %endif
 
 %{__make} refdoc
@@ -196,9 +196,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with x11}
-install ft2demos-*/bin/.libs/ft{multi,timer,view} $RPM_BUILD_ROOT%{_bindir}
-install ft2demos-*/bin/.libs/ft{dump,lint,memchk} $RPM_BUILD_ROOT%{_bindir}
-install ft2demos-*/bin/.libs/testname $RPM_BUILD_ROOT%{_bindir}/fttestname
+install ft2demos-*/bin/.libs/ft* $RPM_BUILD_ROOT%{_bindir}
 %endif
 
 %clean
@@ -209,12 +207,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/{CHANGES,FTL.TXT,PATENTS,LICENSE.TXT,TODO,modules.txt}
+%doc docs/{CHANGES,FTL.TXT,LICENSE.TXT,PATENTS,TODO,formats.txt,raster.txt}
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/{DEBUG,TRUETYPE} docs/reference
+%doc docs/DEBUG docs/reference
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
