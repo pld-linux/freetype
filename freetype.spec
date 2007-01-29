@@ -3,6 +3,9 @@
 %bcond_without	bytecode	# without TT bytecode interpreter
 #		 (patents pending in USA, Japan etc., but now it includes
 #		  also patent-free hinting workaround)
+%bcond_without	lcd             # disable filters reducing color fringes when
+#                 subpixel rendering for LCD (only used with a new 2.3.0 API;
+#                 patents pending)
 %bcond_without	x11		# don't build examples (X11-based)
 #
 Summary:	TrueType font rasterizer
@@ -13,17 +16,17 @@ Summary(pt_BR):	Biblioteca de renderizaГЦo de fontes TrueType
 Summary(ru):	Растеризатор шрифтов TrueType
 Summary(uk):	Растеризатор шрифт╕в TrueType
 Name:		freetype
-Version:	2.2.1
-Release:	2
+Version:	2.3.0
+Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	http://savannah.nongnu.org/download/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	5b2f827082c544392a7701f7423f0781
+# Source0-md5:	5b331456e0357e90d57cab5943dbe560
 Source1:	http://savannah.nongnu.org/download/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	27bcd2540702afe6753c9fd74670f617
+# Source1-md5:	25b57ea93170376377ee9154adc66f63
 Source2:	http://savannah.nongnu.org/download/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	64f5fa4425cd8241b130c0be35ba6760
+# Source2-md5:	adfb4ef31ff7d3910bbdd226769cc170
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
@@ -173,7 +176,9 @@ Programy demonstracyjne do biblioteki FreeType.
 %setup -q -a1 -a2
 
 %build
-CFLAGS="%{rpmcflags} %{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER}" \
+CFLAGS="%{rpmcflags} \
+%{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER} \
+%{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING}" \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
