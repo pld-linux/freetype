@@ -9,12 +9,12 @@
 %bcond_without	x11		# don't build examples (X11-based)
 #
 Summary:	TrueType font rasterizer
-Summary(es.UTF-8):   Biblioteca de render 3D de fuentes TrueType
-Summary(ko.UTF-8):   자유롭게 어디든 쓸 수 있는 트루타입 글꼴을 다루는 엔진
-Summary(pl.UTF-8):   Rasteryzer fontów TrueType
-Summary(pt_BR.UTF-8):   Biblioteca de renderização de fontes TrueType
-Summary(ru.UTF-8):   Растеризатор шрифтов TrueType
-Summary(uk.UTF-8):   Растеризатор шрифтів TrueType
+Summary(es.UTF-8):	Biblioteca de render 3D de fuentes TrueType
+Summary(ko.UTF-8):	자유롭게 어디든 쓸 수 있는 트루타입 글꼴을 다루는 엔진
+Summary(pl.UTF-8):	Rasteryzer fontów TrueType
+Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
+Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
+Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.3.1
 Release:	1
@@ -91,12 +91,12 @@ incluídos neste pacote.
 
 %package devel
 Summary:	Header files and development documentation
-Summary(es.UTF-8):   Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType
-Summary(ko.UTF-8):   FreeType을 쓸 때 필요한 정적 라이브러리와 머리말 파일
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki freetype i dokumentacja
-Summary(pt_BR.UTF-8):   Arquivos de inclusão e bibliotecas estáticas para desenvolvimento com FreeType
-Summary(ru.UTF-8):   Библиотеки разработчика для freetype
-Summary(uk.UTF-8):   Бібліотеки програміста для freetype
+Summary(es.UTF-8):	Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType
+Summary(ko.UTF-8):	FreeType을 쓸 때 필요한 정적 라이브러리와 머리말 파일
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki freetype i dokumentacja
+Summary(pt_BR.UTF-8):	Arquivos de inclusão e bibliotecas estáticas para desenvolvimento com FreeType
+Summary(ru.UTF-8):	Библиотеки разработчика для freetype
+Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
@@ -130,11 +130,11 @@ rodar aplicações existentes, você não precisa deste pacote.
 
 %package static
 Summary:	FreeType static libraries
-Summary(es.UTF-8):   Static libraries for freetype development
-Summary(pl.UTF-8):   Biblioteki statyczne FreeType
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento com freetype
-Summary(ru.UTF-8):   Статические библиотеки freetype
-Summary(uk.UTF-8):   Статичні бібліотеки freetype
+Summary(es.UTF-8):	Static libraries for freetype development
+Summary(pl.UTF-8):	Biblioteki statyczne FreeType
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com freetype
+Summary(ru.UTF-8):	Статические библиотеки freetype
+Summary(uk.UTF-8):	Статичні бібліотеки freetype
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	freetype2-static
@@ -161,8 +161,8 @@ Bibliotecas estáticas para desenvolvimento com freetype.
 
 %package demos
 Summary:	FreeType demo programs
-Summary(ko.UTF-8):   FreeType을 시험해볼 수 있는 프로그램 모음
-Summary(pl.UTF-8):   Programy demonstracyjne FreeType
+Summary(ko.UTF-8):	FreeType을 시험해볼 수 있는 프로그램 모음
+Summary(pl.UTF-8):	Programy demonstracyjne FreeType
 Group:		X11/Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
