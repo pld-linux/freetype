@@ -16,17 +16,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.3.3
+Version:	2.3.4
 Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	c0367b4059f672789b7a41e65f7a4b4a
+# Source0-md5:	1a6c59a7723d637c78672e7784da865d
 Source1:	http://dl.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	3f0df79c7504aee5a2f5803afd510efd
+# Source1-md5:	40cb37ba6c003845208c1b89cf507249
 Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	408bbefef6bea2bd8ce8c48ef8ae2a18
+# Source2-md5:	51684210fc73d59ba107ad6302b21118
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
