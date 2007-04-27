@@ -1,0 +1,5 @@
+- updated to 2.2.1 (fixes some integer overflows)
+[fixes CVE-2006-0747, CVE-2006-1861 aka CVE-2006-2493, CVE-2006-2661, CVE-2006-3467]
+
+- NOTE: internal APIs no longer exported, some apps need fix
+- killed X11R6 paths
