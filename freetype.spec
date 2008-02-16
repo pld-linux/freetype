@@ -1,11 +1,7 @@
 #
 # Conditional build:
-%bcond_without	bytecode	# without TT bytecode interpreter
-#		 (patents pending in USA, Japan etc., but now it includes
-#		  also patent-free hinting workaround)
-%bcond_without	lcd             # disable filters reducing color fringes when
-#                 subpixel rendering for LCD (only used with a new 2.3.0 API;
-#                 patents pending)
+%bcond_without	bytecode	# without TT bytecode interpreter (Apple patents in USA)
+%bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
 %bcond_without	x11		# don't build examples (X11-based)
 #
 Summary:	TrueType font rasterizer
