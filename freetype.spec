@@ -3,6 +3,7 @@
 %bcond_without	bytecode	# without TT bytecode interpreter (Apple patents in USA)
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
 %bcond_without	x11		# don't build examples (X11-based)
+%bcond_without	apidocs         # disable api docs
 #
 Summary:	TrueType font rasterizer
 Summary(es.UTF-8):	Biblioteca de render 3D de fuentes TrueType
@@ -86,7 +87,7 @@ incluídos neste pacote.
 різних платформах.
 
 %package devel
-Summary:	Header files and development documentation
+Summary:	Header files for FreeType development
 Summary(es.UTF-8):	Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType
 Summary(ko.UTF-8):	FreeType을 쓸 때 필요한 정적 라이브러리와 머리말 파일
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki freetype i dokumentacja
@@ -99,8 +100,8 @@ Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
 %description devel
-This package includes the header files and documentation necessary to
-develop applications that use FreeType.
+This package includes the header files necessary to develop applications that
+use FreeType.
 
 %description devel -l es.UTF-8
 Este paquete es necesario, si pretendes desarrollar/compilar
@@ -123,6 +124,13 @@ rodar aplicações existentes, você não precisa deste pacote.
 %description devel -l uk.UTF-8
 Цей пакет містить хедери та бібліотеки, необхідні для розробки
 програм, що використовують freetype.
+
+%package apidocs
+Summary:	FreeType API documetation
+Group:		Documentation
+
+%description apidocs
+FreeType API documetation.
 
 %package static
 Summary:	FreeType static libraries
@@ -213,7 +221,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/DEBUG docs/reference
+%doc docs/DEBUG
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
@@ -221,6 +229,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*.h
 %{_aclocaldir}/*.m4
 %{_pkgconfigdir}/*.pc
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%doc docs/reference
+%endif
 
 %files static
 %defattr(644,root,root,755)
