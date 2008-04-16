@@ -88,10 +88,10 @@ incluídos neste pacote.
 
 %package devel
 Summary:	Header files for FreeType development
-Summary(es.UTF-8):	Archivos de inclusión e bibliotecas estáticas para desarrollo con FreeType
+Summary(es.UTF-8):	Archivos de inclusión para desarrollo con FreeType
 Summary(ko.UTF-8):	FreeType을 쓸 때 필요한 정적 라이브러리와 머리말 파일
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki freetype i dokumentacja
-Summary(pt_BR.UTF-8):	Arquivos de inclusão e bibliotecas estáticas para desenvolvimento com FreeType
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki FreeType
+Summary(pt_BR.UTF-8):	Arquivos de inclusão para desenvolvimento com FreeType
 Summary(ru.UTF-8):	Библиотеки разработчика для freetype
 Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
@@ -100,8 +100,8 @@ Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
 %description devel
-This package includes the header files necessary to develop applications that
-use FreeType.
+This package includes the header files necessary to develop
+applications that use FreeType.
 
 %description devel -l es.UTF-8
 Este paquete es necesario, si pretendes desarrollar/compilar
@@ -109,8 +109,8 @@ aplicaciones con la biblioteca FreeType. Si, simplemente, deseas
 ejecutar aplicaciones existentes, no lo necesitas.
 
 %description devel -l pl.UTF-8
-Pakiet ten zawiera pliki nagłówkowe oraz dokumentację potrzebne przy
-tworzeniu programów wykorzystujących bibliotekę FreeType.
+Pakiet ten zawiera pliki nagłówkowe potrzebne przy tworzeniu programów
+wykorzystujących bibliotekę FreeType.
 
 %description devel -l pt_BR.UTF-8
 Este pacote é necessário se você pretende desenvolver/compilar
@@ -118,19 +118,23 @@ aplicações com a biblioteca FreeType. Se você simplesmente deseja
 rodar aplicações existentes, você não precisa deste pacote.
 
 %description devel -l ru.UTF-8
-Этот пакет содержит хедеры и библиотеки, необходимые для разработки
-программ, использующих freetype.
+Этот пакет содержит хедеры необходимые для разработки программ,
+использующих FreeType.
 
 %description devel -l uk.UTF-8
-Цей пакет містить хедери та бібліотеки, необхідні для розробки
-програм, що використовують freetype.
+Цей пакет містить хедери необхідні для розробки програм, що
+використовують FreeType.
 
 %package apidocs
 Summary:	FreeType API documetation
+Summary(pl.UTF-8):	Dokumentacja API FreeType
 Group:		Documentation
 
 %description apidocs
 FreeType API documetation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API FreeType.
 
 %package static
 Summary:	FreeType static libraries
