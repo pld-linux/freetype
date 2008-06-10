@@ -13,17 +13,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.3.5
+Version:	2.3.6
 Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	65234327c5ac46ee00ebda15995d4c1c
+# Source0-md5:	fb182d508017cb608e9df8c7dca648dc
 Source1:	http://dl.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	8f443368764f7cd776749e0143f423dd
+# Source1-md5:	f39aa6954d71193d2b62fab89a28b50d
 Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	708bf1bc13a0a1d1bb801466d6d97c40
+# Source2-md5:	97185008e0a7a2d4ac3045a872f31fe3
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
@@ -221,18 +221,19 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/{CHANGES,FTL.TXT,LICENSE.TXT,PATENTS,TODO,formats.txt,raster.txt}
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libfreetype.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfreetype.so.6
 
 %files devel
 %defattr(644,root,root,755)
 %doc docs/DEBUG
 %attr(755,root,root) %{_bindir}/freetype-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libfreetype.so
+%{_libdir}/libfreetype.la
 %{_includedir}/freetype2
-%{_includedir}/*.h
-%{_aclocaldir}/*.m4
-%{_pkgconfigdir}/*.pc
+%{_includedir}/ft2build.h
+%{_aclocaldir}/freetype2.m4
+%{_pkgconfigdir}/freetype2.pc
 
 %if %{with apidocs}
 %files apidocs
@@ -242,7 +243,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libfreetype.a
 
 %if %{with x11}
 %files demos
