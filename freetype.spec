@@ -27,12 +27,17 @@ Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
+BuildRequires:	rpm >= 4.4.9-56
+%if "%{pld_release}" == "ac"
+%{?with_x11:BuildRequires:	XFree86-devel}
+%else
 %{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
+%endif
 BuildRequires:	zlib-devel
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags_ia32	-fomit-frame-pointer 
+%define		specflags_ia32	-fomit-frame-pointer
 # see <freetype/internal/ftserv.h>, the real horror
 %define		specflags	-fno-strict-aliasing
 
@@ -191,12 +196,12 @@ CFLAGS="%{rpmcflags} \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
 %{__make} \
-	X11_LIB=
+	X11_LIB=%{?_x_libraries}
 
 %if %{with x11}
 %{__make} -C ft2demos-* \
-	TOP_DIR="`pwd`" \
-	X11_LIB=
+	TOP_DIR=$(pwd) \
+	X11_LIB=%{?_x_libraries}
 %endif
 
 %{__make} refdoc
