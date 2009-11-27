@@ -27,6 +27,7 @@ Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
+BuildRequires:	python-modules
 BuildRequires:	rpm >= 4.4.9-56
 %if "%{pld_release}" == "ac"
 %{?with_x11:BuildRequires:	XFree86-devel}
