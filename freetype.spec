@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_without	bytecode	# without TT bytecode interpreter (Apple patents in USA)
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
 %bcond_without	x11		# don't build examples (X11-based)
 %bcond_without	apidocs         # disable api docs
@@ -13,17 +12,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.3.12
+Version:	2.4.0
 Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	e974a82e5939be8e05ee65f07275d7c5
+# Source0-md5:	6dd4b655bf711f64562198b63b073032
 Source1:	http://dl.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	2788beb4e1ee01bad8ed9978c0630e86
+# Source1-md5:	6ef5730cca14234151ca6116f676935e
 Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	ce2811161e779de4eff39bd9d5d916ba
+# Source2-md5:	9bf436730c85556a74ed687b701a4473
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
@@ -191,7 +190,6 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %build
 CFLAGS="%{rpmcflags} \
-%{?with_bytecode:-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER} \
 %{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING}" \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
@@ -226,7 +224,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/{CHANGES,FTL.TXT,LICENSE.TXT,PATENTS,TODO,formats.txt,raster.txt}
+%doc docs/{CHANGES,FTL.TXT,LICENSE.TXT,TODO,formats.txt,raster.txt}
 %attr(755,root,root) %{_libdir}/libfreetype.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfreetype.so.6
 
