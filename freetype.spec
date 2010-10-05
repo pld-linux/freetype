@@ -3,7 +3,7 @@
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
 %bcond_without	x11		# don't build examples (X11-based)
 %bcond_without	apidocs         # disable api docs
-#
+
 Summary:	TrueType font rasterizer
 Summary(es.UTF-8):	Biblioteca de render 3D de fuentes TrueType
 Summary(ko.UTF-8):	자유롭게 어디든 쓸 수 있는 트루타입 글꼴을 다루는 엔진
@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.4.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
@@ -213,7 +213,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with x11}
-install ft2demos-*/bin/.libs/ft* $RPM_BUILD_ROOT%{_bindir}
+install -p ft2demos-*/bin/.libs/ft* $RPM_BUILD_ROOT%{_bindir}
 %endif
 
 %clean
