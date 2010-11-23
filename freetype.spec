@@ -13,16 +13,17 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.4.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
 # Source0-md5:	75ac7082bde7b3805dc5d6bc806fa045
-Source1:	http://dl.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
+Source1:	http://downloads.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
 # Source1-md5:	79a0fa0444eb7f2f46e75cae74c0772d
-Source2:	http://dl.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
+Source2:	http://downloads.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
 # Source2-md5:	ffc0152660b96ba2126926860e6d7bcc
+Patch0:		%{name}-CVE-2010-3855.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
@@ -187,6 +188,7 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
+%patch0 -p1
 
 %build
 CFLAGS="%{rpmcflags} \
@@ -234,7 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/libfreetype.so
 %{_libdir}/libfreetype.la
-%{_includedir}/freetype2
+/usr/include/freetype2
 %{_includedir}/ft2build.h
 %{_aclocaldir}/freetype2.m4
 %{_pkgconfigdir}/freetype2.pc
