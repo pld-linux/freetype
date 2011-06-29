@@ -12,17 +12,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.4.4
+Version:	2.4.5
 Release:	1
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	b3e2b6e2f1c3e0dffa1fd2a0f848b671
+# Source0-md5:	90428a6d8ec4876cd1eb94858c2a59b0
 Source1:	http://downloads.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	a657e301bc1568848ee981297ca599dc
+# Source1-md5:	bb6fc58b62762eaaea9688443d5d8477
 Source2:	http://downloads.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	8a95c095fa5fe87a00b08e3027105071
+# Source2-md5:	16dd7cc052be89019bd29f6e3e4cf3af
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
@@ -234,7 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/libfreetype.so
 %{_libdir}/libfreetype.la
-/usr/include/freetype2
+%{_includedir}/freetype2
 %{_includedir}/ft2build.h
 %{_aclocaldir}/freetype2.m4
 %{_pkgconfigdir}/freetype2.pc
