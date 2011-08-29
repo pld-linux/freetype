@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.4.6
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL or FTL
 Group:		Libraries
@@ -23,6 +23,7 @@ Source1:	http://downloads.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz
 # Source1-md5:	e9ba39c2ca46e887e995d70f03284188
 Source2:	http://downloads.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
 # Source2-md5:	7d777ed105ec393170e007203fa1bbbe
+Patch0:		freetype-2.2.1-enable-valid.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	python
@@ -187,9 +188,10 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
+%patch0 -p1
 
 %build
-CFLAGS="%{rpmcflags} \
+CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING}" \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
