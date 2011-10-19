@@ -15,7 +15,7 @@ Name:		freetype
 Version:	2.4.7
 Release:	1
 Epoch:		1
-License:	GPL or FTL
+License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
 # Source0-md5:	dbadce8f0c5e70a0b7c51eadf2dd9394
