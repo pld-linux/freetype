@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.4.8
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -151,6 +151,7 @@ Summary(ru.UTF-8):	Статические библиотеки freetype
 Summary(uk.UTF-8):	Статичні бібліотеки freetype
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	bzip2-static
 Obsoletes:	freetype2-static
 
 %description static
