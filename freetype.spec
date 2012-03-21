@@ -26,6 +26,7 @@ Source2:	http://downloads.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
 Patch0:		freetype-2.2.1-enable-valid.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
+BuildRequires:	bzip2-devel
 BuildRequires:	python
 BuildRequires:	python-modules
 BuildRequires:	rpm >= 4.4.9-56
@@ -102,6 +103,7 @@ Summary(ru.UTF-8):	Библиотеки разработчика для freetype
 Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	bzip2-devel
 Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
@@ -151,7 +153,6 @@ Summary(ru.UTF-8):	Статические библиотеки freetype
 Summary(uk.UTF-8):	Статичні бібліотеки freetype
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Requires:	bzip2-static
 Obsoletes:	freetype2-static
 
 %description static
