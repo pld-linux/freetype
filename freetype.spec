@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.4.11
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -194,7 +194,9 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %build
 CFLAGS="%{rpmcflags} %{rpmcppflags} \
-%{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING}" \
+%{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING} \
+-DTT_CONFIG_OPTION_SUBPIXEL_HINTING \
+" \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
