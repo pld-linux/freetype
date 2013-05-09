@@ -12,18 +12,19 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.4.11
-Release:	2
+Version:	2.4.12
+Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	b93435488942486c8d0ca22e8f768034
+# Source0-md5:	3463102764315eb86c0d3c2e1f3ffb7d
 Source1:	http://downloads.sourceforge.net/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	20f148103e069093f53584ce5ba16581
+# Source1-md5:	e3955ef324b2ceea74dc849e07fbfb7a
 Source2:	http://downloads.sourceforge.net/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	4c751f2b02bd181102c377a6396d8454
+# Source2-md5:	79d2329da1a118d559ec6bd77fddb210
 Patch0:		freetype-2.2.1-enable-valid.patch
+Patch1:		freetype-hinting-adobe.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -191,6 +192,7 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
+%patch1 -p1
 
 %build
 CFLAGS="%{rpmcflags} %{rpmcppflags} \
