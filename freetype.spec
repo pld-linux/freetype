@@ -27,9 +27,11 @@ Patch0:		freetype-2.2.1-enable-valid.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	libpng-devel
 BuildRequires:	python
 BuildRequires:	python-modules
 BuildRequires:	rpm >= 4.4.9-56
+BuildRequires:	sed >= 4.0
 %if "%{pld_release}" == "ac"
 %{?with_x11:BuildRequires:	XFree86-devel}
 %else
@@ -104,6 +106,7 @@ Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bzip2-devel
+Requires:	libpng-devel
 Requires:	zlib-devel
 Obsoletes:	freetype2-devel
 
@@ -191,6 +194,9 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
+
+# avoid propagating -L%{_libdir} through *.la
+%{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
 
 %build
 CFLAGS="%{rpmcflags} %{rpmcppflags} \
