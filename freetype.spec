@@ -12,18 +12,19 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.5.0.1
-Release:	2
+Version:	2.5.1
+Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	c72e9010b1d986d556fc0b2b5fcbf31a
-Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-2.5.0.tar.bz2
-# Source1-md5:	40f3d5cc0b16396b3fb6b98eeaa053b2
-Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-2.5.0.tar.bz2
-# Source2-md5:	9bbea1989116715d3544d8439c8d2972
-Patch0:		freetype-2.2.1-enable-valid.patch
+# Source0-md5:	93eba7854094f46d7d98a9a2370af4d6
+Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.bz2
+# Source1-md5:	b955678d06318b32337bd7c730daa676
+Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.bz2
+# Source2-md5:	73742ef4b13ff9f7b1d4ad2199964141
+Patch0:		%{name}-2.2.1-enable-valid.patch
+Patch1:		%{name}-nodebug.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -194,6 +195,7 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
+%patch1 -p1
 
 # avoid propagating -L%{_libdir} through *.la
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
@@ -247,7 +249,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfreetype.so
 %{_libdir}/libfreetype.la
 %{_includedir}/freetype2
-%{_includedir}/ft2build.h
 %{_aclocaldir}/freetype2.m4
 %{_pkgconfigdir}/freetype2.pc
 
