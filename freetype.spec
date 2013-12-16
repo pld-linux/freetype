@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.5.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -225,6 +225,8 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+ln -s . $RPM_BUILD_ROOT%{_includedir}/freetype2/freetype
 
 %if %{with x11}
 install -p ft2demos-*/bin/.libs/ft* $RPM_BUILD_ROOT%{_bindir}
