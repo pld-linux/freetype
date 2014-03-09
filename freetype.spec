@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
 %bcond_without	x11		# don't build examples (X11-based)
+%bcond_without	harfbuzz	# harfbuzz based autohinting
 %bcond_without	apidocs         # disable api docs
 
 Summary:	TrueType font rasterizer
@@ -12,22 +13,22 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.5.2
+Version:	2.5.3
 Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	10e8f4d6a019b124088d18bc26123a25
+# Source0-md5:	d6b60f06bfc046e43ab2a6cbfd171d65
 Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	cb858209b8d84860345f3f62fcae2af2
+# Source1-md5:	e192ef88e84ddf10665f34cf418652fb
 Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	399d98441c6c67b5bf29c7733db27438
+# Source2-md5:	3d2cd9f572a1a80b9744b9d6b75975ba
 Patch0:		%{name}-2.2.1-enable-valid.patch
-Patch1:		%{name}-git.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 0.9.19}
 BuildRequires:	libpng-devel
 BuildRequires:	python
 BuildRequires:	python-modules
@@ -195,7 +196,6 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
-%patch1 -p1
 
 # avoid propagating -L%{_libdir} through *.la
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
@@ -204,6 +204,7 @@ Programy demonstracyjne do biblioteki FreeType.
 CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING} \
 -DTT_CONFIG_OPTION_SUBPIXEL_HINTING \
+%{?with_harfbuzz:-DFT_CONFIG_OPTION_USE_HARFBUZZ} \
 " \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
@@ -253,6 +254,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/freetype2
 %{_aclocaldir}/freetype2.m4
 %{_pkgconfigdir}/freetype2.pc
+%{_mandir}/man1/freetype-config.1*
 
 %if %{with apidocs}
 %files apidocs
