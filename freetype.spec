@@ -108,6 +108,7 @@ Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bzip2-devel
+%{?with_harfbuzz:Requires:	harfbuzz-devel >= 0.9.19}
 Requires:	libpng-devel
 Requires:	zlib-devel
 Obsoletes:	freetype2-devel
