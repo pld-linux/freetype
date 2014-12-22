@@ -202,6 +202,7 @@ Programy demonstracyjne do biblioteki FreeType.
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
 
 %build
+CC="%{__cc}" \
 CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING} \
 -DTT_CONFIG_OPTION_SUBPIXEL_HINTING \
@@ -210,10 +211,12 @@ CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{__make} setup unix \
 	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
 
+CC="%{__cc}" \
 %{__make} \
 	X11_LIB=%{?_x_libraries}
 
 %if %{with x11}
+CC="%{__cc}" \
 %{__make} -C ft2demos-* \
 	TOP_DIR=$(pwd) \
 	X11_LIB=%{?_x_libraries}
