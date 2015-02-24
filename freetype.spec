@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.5.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
