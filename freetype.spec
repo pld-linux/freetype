@@ -1,5 +1,5 @@
 # TODO:
-# - demos seem to use installed headers instead of these coming from new tarball
+# - demos seem to use installed headers instead of these coming from new tarball (therefore buildconflicts)
 #
 # Conditional build:
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
@@ -42,6 +42,7 @@ BuildRequires:	sed >= 4.0
 %{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
 %endif
 BuildRequires:	zlib-devel
+BuildConflicts:	%{name}-devel < %{version}
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
