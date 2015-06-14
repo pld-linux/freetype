@@ -31,6 +31,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 %{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 0.9.19}
 BuildRequires:	libpng-devel
+BuildRequires:	pkgconfig >= 1:0.24
 BuildRequires:	python
 BuildRequires:	python-modules
 BuildRequires:	rpm >= 4.4.9-56
