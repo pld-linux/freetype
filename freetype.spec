@@ -1,5 +1,3 @@
-# TODO:
-# - demos seem to use installed headers instead of these coming from new tarball (therefore buildconflicts)
 #
 # Conditional build:
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
@@ -27,6 +25,7 @@ Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{versio
 Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.bz2
 # Source2-md5:	c6c209b37f10621d6ff100620b8292b4
 Patch0:		%{name}-2.2.1-enable-valid.patch
+Patch1:		ft2demos-includes.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -42,7 +41,6 @@ BuildRequires:	sed >= 4.0
 %{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
 %endif
 BuildRequires:	zlib-devel
-BuildConflicts:	%{name}-devel < %{version}
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -200,6 +198,7 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
+%patch1 -p1
 
 # avoid propagating -L%{_libdir} through *.la
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure

@@ -1,0 +1,14 @@
+--- freetype-2.6/ft2demos-2.6/Makefile.orig	2015-06-07 09:34:19.000000000 +0200
++++ freetype-2.6/ft2demos-2.6/Makefile	2015-06-14 08:06:29.912090987 +0200
+@@ -127,9 +127,9 @@
+                  $(TOP_DIR)/include \
+                  $(SRC_DIR)
+ 
+-  COMPILE = $(CC) $(CPPFLAGS) \
++  COMPILE = $(CC) $(INCLUDES:%=$I%) \
++                  $(CPPFLAGS) \
+                   $(CFLAGS) \
+-                  $(INCLUDES:%=$I%) \
+                   $DFT_CONFIG_MODULES_H="<ftmodule.h>"
+ 
+   FTLIB := $(LIB_DIR)/$(LIBRARY).$A
