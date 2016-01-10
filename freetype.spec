@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.6.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -145,6 +145,9 @@ rodar aplicações existentes, você não precisa deste pacote.
 Summary:	FreeType API documetation
 Summary(pl.UTF-8):	Dokumentacja API FreeType
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 FreeType API documetation.
