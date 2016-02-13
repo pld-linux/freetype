@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.6.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -202,7 +202,9 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
-%patch1 -p1
+cd ft2demos-%{version}
+%patch1 -p2
+cd ..
 
 # avoid propagating -L%{_libdir} through *.la
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
