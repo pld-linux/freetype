@@ -213,7 +213,7 @@ cd ..
 CC="%{__cc}" \
 CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{?with_lcd:-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING} \
--DTT_CONFIG_OPTION_SUBPIXEL_HINTING \
+-DTT_CONFIG_OPTION_SUBPIXEL_HINTING=2 \
 %{?with_harfbuzz:-DFT_CONFIG_OPTION_USE_HARFBUZZ} \
 " \
 %{__make} setup unix \
