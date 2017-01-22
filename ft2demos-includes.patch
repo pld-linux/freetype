@@ -1,6 +1,6 @@
---- freetype-2.6.2/ft2demos-2.6.2/Makefile.orig	2015-06-07 09:34:19.000000000 +0200
-+++ freetype-2.6.2/ft2demos-2.6.2/Makefile	2015-06-14 08:06:29.912090987 +0200
-@@ -127,9 +127,9 @@
+--- freetype-2.7.1/ft2demos-2.7.1/Makefile.orig	2017-01-21 23:38:47.751279050 +0100
++++ freetype-2.7.1/ft2demos-2.7.1/Makefile	2017-01-21 23:40:12.444611419 +0100
+@@ -127,10 +127,10 @@
                   $(TOP_DIR)/include \
                   $(SRC_DIR)
  
@@ -8,7 +8,8 @@
 +  COMPILE = $(CC) $(INCLUDES:%=$I%) \
 +                  $(CPPFLAGS) \
                    $(CFLAGS) \
+                   $(ANSIFLAGS) \
 -                  $(INCLUDES:%=$I%) \
                    $DFT_CONFIG_MODULES_H="<ftmodule.h>"
  
-   FTLIB := $(LIB_DIR)/$(LIBRARY).$A
+   # Enable C99 for gcc to avoid warnings.
