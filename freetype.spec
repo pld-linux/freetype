@@ -13,17 +13,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.9
+Version:	2.9.1
 Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.bz2
-# Source0-md5:	513c403c110016fdc7e537216a642b1d
+# Source0-md5:	60ef7d8160cd4bf8cb118ee9d65367ca
 Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.bz2
-# Source1-md5:	d85ec42989ba00b10c3b13e4644ca229
+# Source1-md5:	c0a67a229b4c7c275b1f6823b0ffa1b2
 Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.bz2
-# Source2-md5:	7b0dab9d35e5249a90d882f226c0188e
+# Source2-md5:	178827156d90e07bce8f354c9565d84b
 Patch0:		%{name}-2.2.1-enable-valid.patch
 Patch1:		ft2demos-includes.patch
 URL:		http://www.freetype.org/
@@ -258,13 +258,11 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc docs/DEBUG
-%attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/libfreetype.so
 %{_libdir}/libfreetype.la
 %{_includedir}/freetype2
 %{_aclocaldir}/freetype2.m4
 %{_pkgconfigdir}/freetype2.pc
-%{_mandir}/man1/freetype-config.1*
 
 %if %{with apidocs}
 %files apidocs
