@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.9.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -217,7 +217,7 @@ CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{?with_harfbuzz:-DFT_CONFIG_OPTION_USE_HARFBUZZ} \
 " \
 %{__make} setup unix \
-	CFG="--prefix=%{_prefix} --libdir=%{_libdir}"
+	CFG="--prefix=%{_prefix} --libdir=%{_libdir} --enable-freetype-config"
 
 CC="%{__cc}" \
 %{__make} \
@@ -258,11 +258,13 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc docs/DEBUG
+%attr(755,root,root) %{_bindir}/freetype-config
 %attr(755,root,root) %{_libdir}/libfreetype.so
 %{_libdir}/libfreetype.la
 %{_includedir}/freetype2
 %{_aclocaldir}/freetype2.m4
 %{_pkgconfigdir}/freetype2.pc
+%{_mandir}/man1/freetype-config.1*
 
 %if %{with apidocs}
 %files apidocs
