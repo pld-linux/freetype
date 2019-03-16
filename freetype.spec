@@ -4,6 +4,7 @@
 %bcond_without	x11		# don't build examples (X11-based)
 %bcond_without	harfbuzz	# harfbuzz based autohinting
 %bcond_without	apidocs         # disable api docs
+%bcond_with	regen_refdoc    # regenerate reference documentation
 
 Summary:	TrueType font rasterizer
 Summary(es.UTF-8):	Biblioteca de render 3D de fuentes TrueType
@@ -14,7 +15,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.10.0
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -32,8 +33,11 @@ BuildRequires:	bzip2-devel
 %{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 0.9.21}
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig >= 1:0.24
-BuildRequires:	python
-BuildRequires:	python-modules
+%if %{with regen_refdoc}
+BuildRequires:	python3
+BuildRequires:	python3-docwriter
+BuildRequires:	python3-modules
+%endif
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	sed >= 4.0
 %if "%{pld_release}" == "ac"
@@ -230,7 +234,9 @@ CC="%{__cc}" \
 	X11_LIB=%{?_x_libraries}
 %endif
 
+%if %{with regen_refdoc}
 %{__make} refdoc
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
