@@ -30,7 +30,7 @@ Patch1:		ft2demos-includes.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 0.9.21}
+%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 1.3.0}
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig >= 1:0.24
 %if %{with regen_refdoc}
@@ -46,6 +46,7 @@ BuildRequires:	sed >= 4.0
 %{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
 %endif
 BuildRequires:	zlib-devel
+%{?with_harfbuzz:Requires:	harfbuzz >= 1.3.0}
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -114,7 +115,7 @@ Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bzip2-devel
-%{?with_harfbuzz:Requires:	harfbuzz-devel >= 0.9.21}
+%{?with_harfbuzz:Requires:	harfbuzz-devel >= 1.3.0}
 Requires:	libpng-devel
 Requires:	zlib-devel
 Obsoletes:	freetype2-devel
