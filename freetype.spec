@@ -15,7 +15,7 @@ Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
 Version:	2.10.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
@@ -40,11 +40,13 @@ BuildRequires:	python3-modules
 %endif
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
 %if "%{pld_release}" == "ac"
 %{?with_x11:BuildRequires:	XFree86-devel}
 %else
 %{?with_x11:BuildRequires:	xorg-lib-libX11-devel}
 %endif
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 %{?with_harfbuzz:Requires:	harfbuzz >= 1.3.0}
 Obsoletes:	freetype2
