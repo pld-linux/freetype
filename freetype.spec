@@ -208,7 +208,7 @@ Programy demonstracyjne do biblioteki FreeType.
 %setup -q -a1 -a2
 %patch0 -p1
 cd ft2demos-%{version}
-%patch1 -p2
+%patch1 -p1
 cd ..
 
 # avoid propagating -L%{_libdir} through *.la
