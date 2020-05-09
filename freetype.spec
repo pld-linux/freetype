@@ -6,6 +6,10 @@
 %bcond_without	apidocs         # disable api docs
 %bcond_with	regen_refdoc    # regenerate reference documentation
 
+%if %{without harfbuzz}
+# demos require harfbuzz
+%undefine	with_x11
+%endif
 Summary:	TrueType font rasterizer
 Summary(es.UTF-8):	Biblioteca de render 3D de fuentes TrueType
 Summary(ko.UTF-8):	자유롭게 어디든 쓸 수 있는 트루타입 글꼴을 다루는 엔진
@@ -30,11 +34,12 @@ Patch1:		ft2demos-includes.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 1.3.0}
+%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 1.8.0}
+BuildRequires:	libbrotli-devel
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig >= 1:0.24
 %if %{with regen_refdoc}
-BuildRequires:	python3
+BuildRequires:	python3 >= 1:3.5
 BuildRequires:	python3-docwriter
 BuildRequires:	python3-modules
 %endif
@@ -48,7 +53,7 @@ BuildRequires:	tar >= 1:1.22
 %endif
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-%{?with_harfbuzz:Requires:	harfbuzz >= 1.3.0}
+%{?with_harfbuzz:Requires:	harfbuzz >= 1.8.0}
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -117,7 +122,8 @@ Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bzip2-devel
-%{?with_harfbuzz:Requires:	harfbuzz-devel >= 1.3.0}
+%{?with_harfbuzz:Requires:	harfbuzz-devel >= 1.8.0}
+Requires:	libbrotli-devel
 Requires:	libpng-devel
 Requires:	zlib-devel
 Obsoletes:	freetype2-devel
