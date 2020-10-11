@@ -18,19 +18,18 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.10.2
+Version:	2.10.3
 Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.xz
-# Source0-md5:	7c0d5a39f232d7eb9f9d7da76bf08074
+# Source0-md5:	b181a5e303456c19fafca2e4aac4350a
 Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.xz
-# Source1-md5:	836b03f8741d9af50d24d3cdaea6f1e9
+# Source1-md5:	62884ce0ade15cc26ce70b5901de4177
 Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.xz
-# Source2-md5:	972a0691714998d538877a7274322421
+# Source2-md5:	ac549fac4d693da944a47af1e5500250
 Patch0:		%{name}-2.2.1-enable-valid.patch
-Patch1:		ft2demos-includes.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -215,9 +214,6 @@ Programy demonstracyjne do biblioteki FreeType.
 %prep
 %setup -q -a1 -a2
 %patch0 -p1
-cd ft2demos-%{version}
-%patch1 -p1
-cd ..
 
 # avoid propagating -L%{_libdir} through *.la
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
