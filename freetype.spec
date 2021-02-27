@@ -157,9 +157,7 @@ rodar aplicações existentes, você não precisa deste pacote.
 Summary:	FreeType API documetation
 Summary(pl.UTF-8):	Dokumentacja API FreeType
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 FreeType API documetation.
