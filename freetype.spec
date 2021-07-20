@@ -18,22 +18,22 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.10.4
+Version:	2.11.0
 Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
-Source0:	http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.xz
-# Source0-md5:	0e6c0e9b218be3ba3e26e1d23b1c80dd
-Source1:	http://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.xz
-# Source1-md5:	a389bc390ca8009c758094e71a8fb18d
-Source2:	http://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.xz
-# Source2-md5:	6e0772fe3b0f945bb6a4140e14c20eb2
+Source0:	https://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.xz
+# Source0-md5:	f931582653774e310ed3a7e49b7167a3
+Source1:	https://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.xz
+# Source1-md5:	c61af913d48e89566c99cddfb8e4c158
+Source2:	https://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.xz
+# Source2-md5:	767577ed3bcda0901a48c5da90bf902a
 Patch0:		%{name}-2.2.1-enable-valid.patch
 URL:		http://www.freetype.org/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 1.8.0}
+%{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 2.0.0}
 BuildRequires:	libbrotli-devel
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig >= 1:0.24
@@ -52,7 +52,7 @@ BuildRequires:	tar >= 1:1.22
 %endif
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-%{?with_harfbuzz:Requires:	harfbuzz >= 1.8.0}
+%{?with_harfbuzz:Requires:	harfbuzz >= 2.0.0}
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -121,7 +121,7 @@ Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bzip2-devel
-%{?with_harfbuzz:Requires:	harfbuzz-devel >= 1.8.0}
+%{?with_harfbuzz:Requires:	harfbuzz-devel >= 2.0.0}
 Requires:	libbrotli-devel
 Requires:	libpng-devel
 Requires:	zlib-devel
@@ -260,7 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/{CHANGES,FTL.TXT,LICENSE.TXT,TODO,formats.txt,raster.txt}
+%doc LICENSE.TXT docs/{CHANGES,FTL.TXT,TODO,formats.txt,raster.txt}
 %attr(755,root,root) %{_libdir}/libfreetype.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfreetype.so.6
 
