@@ -18,17 +18,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.11.1
+Version:	2.12.0
 Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	https://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.xz
-# Source0-md5:	24e79233d607ded439ef36ff1f3ab68f
+# Source0-md5:	9a07649ce73ba0d80d211092b3d1c2fa
 Source1:	https://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.xz
-# Source1-md5:	37a74ce8cd1bf3736f77c7074a4f5052
+# Source1-md5:	b15408391d16e614d414cecfc1e3761f
 Source2:	https://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.xz
-# Source2-md5:	9efff227779626d46c3d7334712c15a3
+# Source2-md5:	6ddd74dd166a653e41513c5a60d38240
 Patch0:		%{name}-2.2.1-enable-valid.patch
 URL:		https://freetype.org/
 BuildRequires:	automake
@@ -36,6 +36,7 @@ BuildRequires:	bzip2-devel
 %{?with_harfbuzz:BuildRequires:	harfbuzz-devel >= 2.0.0}
 BuildRequires:	libbrotli-devel
 BuildRequires:	libpng-devel
+%{?with_x11:BuildRequires:	librsvg-devel >= 2.46.0}
 BuildRequires:	pkgconfig >= 1:0.24
 %if %{with regen_refdoc}
 BuildRequires:	python3 >= 1:3.5
@@ -202,6 +203,7 @@ Summary(ko.UTF-8):	FreeType을 시험해볼 수 있는 프로그램 모음
 Summary(pl.UTF-8):	Programy demonstracyjne FreeType
 Group:		X11/Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	librsvg >= 2.46.0
 
 %description demos
 Demonstration programs for FreeType library.
