@@ -44,6 +44,7 @@ BuildRequires:	python3-docwriter
 BuildRequires:	python3-modules
 %endif
 BuildRequires:	rpm >= 4.4.9-56
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %if "%{pld_release}" == "ac"
