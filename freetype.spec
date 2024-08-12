@@ -3,8 +3,9 @@
 %bcond_without	lcd		# without LCD subpixel color filtering (Microsoft patents in USA)
 %bcond_without	x11		# don't build examples (X11-based)
 %bcond_without	harfbuzz	# harfbuzz based autohinting
-%bcond_without	apidocs         # disable api docs
-%bcond_with	regen_refdoc    # regenerate reference documentation
+%bcond_without	apidocs		# disable api docs
+%bcond_with	regen_refdoc	# regenerate reference documentation
+%bcond_without	static_libs	# static library
 
 %if %{without harfbuzz}
 # demos require harfbuzz
@@ -227,7 +228,7 @@ CFLAGS="%{rpmcflags} %{rpmcppflags} \
 %{?with_harfbuzz:-DFT_CONFIG_OPTION_USE_HARFBUZZ} \
 " \
 %{__make} setup unix \
-	CFG="--prefix=%{_prefix} --libdir=%{_libdir} --enable-freetype-config"
+	CFG="--prefix=%{_prefix} --libdir=%{_libdir} --enable-freetype-config %{!?with_static_libs:--disable-static}"
 
 CC="%{__cc}" \
 %{__make} \
@@ -284,9 +285,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/reference
 %endif
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libfreetype.a
+%endif
 
 %if %{with x11}
 %files demos
