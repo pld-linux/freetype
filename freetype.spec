@@ -215,7 +215,7 @@ Programy demonstracyjne do biblioteki FreeType.
 
 %prep
 %setup -q -a1 -a2
-%patch0 -p1
+%patch -P0 -p1
 
 # avoid propagating -L%{_libdir} through *.la
 %{__sed} -i -e 's,libpng-config --ldflags,libpng-config --libs,' builds/unix/configure
