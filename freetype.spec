@@ -19,17 +19,17 @@ Summary(pt_BR.UTF-8):	Biblioteca de renderização de fontes TrueType
 Summary(ru.UTF-8):	Растеризатор шрифтов TrueType
 Summary(uk.UTF-8):	Растеризатор шрифтів TrueType
 Name:		freetype
-Version:	2.13.3
+Version:	2.14.0
 Release:	1
 Epoch:		1
 License:	GPL v2 or FTL
 Group:		Libraries
 Source0:	https://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.xz
-# Source0-md5:	f3b4432c4212064c00500e1ad63fbc64
+# Source0-md5:	6fc21ca4dcabcb8a4d643877585b3028
 Source1:	https://download.savannah.gnu.org/releases/freetype/%{name}-doc-%{version}.tar.xz
-# Source1-md5:	6affe0d431939398cc3c7cdd58d824f8
+# Source1-md5:	809cb7b52b90f1611aa740375e4dbff9
 Source2:	https://download.savannah.gnu.org/releases/freetype/ft2demos-%{version}.tar.xz
-# Source2-md5:	0e4e6017813b7d134a1029d336dbc38a
+# Source2-md5:	58c141b1511ef9fae42d998c388f3405
 Patch0:		%{name}-2.2.1-enable-valid.patch
 URL:		https://freetype.org/
 BuildRequires:	automake
