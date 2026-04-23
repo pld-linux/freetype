@@ -55,7 +55,7 @@ BuildRequires:	tar >= 1:1.22
 %endif
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-%{?with_harfbuzz:Requires:	harfbuzz >= 2.0.0}
+%{?with_harfbuzz:Requires:	harfbuzz%{?_isa} >= 2.0.0}
 Obsoletes:	freetype2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -122,12 +122,12 @@ Summary(pt_BR.UTF-8):	Arquivos de inclusão para desenvolvimento com FreeType
 Summary(ru.UTF-8):	Библиотеки разработчика для freetype
 Summary(uk.UTF-8):	Бібліотеки програміста для freetype
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	bzip2-devel
-%{?with_harfbuzz:Requires:	harfbuzz-devel >= 2.0.0}
-Requires:	libbrotli-devel
-Requires:	libpng-devel
-Requires:	zlib-devel
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	bzip2-devel%{?_isa}
+%{?with_harfbuzz:Requires:	harfbuzz-devel%{?_isa} >= 2.0.0}
+Requires:	libbrotli-devel%{?_isa}
+Requires:	libpng-devel%{?_isa}
+Requires:	zlib-devel%{?_isa}
 Obsoletes:	freetype2-devel
 
 %description devel
@@ -176,7 +176,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com freetype
 Summary(ru.UTF-8):	Статические библиотеки freetype
 Summary(uk.UTF-8):	Статичні бібліотеки freetype
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
 Obsoletes:	freetype2-static
 
 %description static
@@ -204,8 +204,8 @@ Summary:	FreeType demo programs
 Summary(ko.UTF-8):	FreeType을 시험해볼 수 있는 프로그램 모음
 Summary(pl.UTF-8):	Programy demonstracyjne FreeType
 Group:		X11/Applications
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	librsvg >= 2.46.0
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	librsvg%{?_isa} >= 2.46.0
 
 %description demos
 Demonstration programs for FreeType library.
